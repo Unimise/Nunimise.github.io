@@ -86,40 +86,16 @@
 
 
 
-<meta name="description" content="function cpdir($directory,$ddirectory)
-{    
-//判断给定路径是否存在
-if (file_exists($directory)&amp;amp;&amp;amp;file_exists($ddirectory)) 
-{   
-    //获取句柄
-    if ($handle=opendir($directory)) 
-    {   
-        //遍历">
+<meta name="description" content="复制整个目录的函数实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php复制整个文件目录的实现">
 <meta property="og:url" content="http://yoursite.com/2015/09/19/php复制整个文件目录的实现/index.html">
 <meta property="og:site_name" content="小六儿(*^__^*)">
-<meta property="og:description" content="function cpdir($directory,$ddirectory)
-{    
-//判断给定路径是否存在
-if (file_exists($directory)&amp;amp;&amp;amp;file_exists($ddirectory)) 
-{   
-    //获取句柄
-    if ($handle=opendir($directory)) 
-    {   
-        //遍历">
-<meta property="og:updated_time" content="2016-09-19T03:43:17.641Z">
+<meta property="og:description" content="复制整个目录的函数实现">
+<meta property="og:updated_time" content="2016-09-19T03:52:53.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php复制整个文件目录的实现">
-<meta name="twitter:description" content="function cpdir($directory,$ddirectory)
-{    
-//判断给定路径是否存在
-if (file_exists($directory)&amp;amp;&amp;amp;file_exists($ddirectory)) 
-{   
-    //获取句柄
-    if ($handle=opendir($directory)) 
-    {   
-        //遍历">
+<meta name="twitter:description" content="复制整个目录的函数实现">
 
 
 
@@ -369,26 +345,8 @@ if (file_exists($directory)&amp;amp;&amp;amp;file_exists($ddirectory))
       
 
       
-        <pre><code>function cpdir($directory,$ddirectory)
-{    
-//判断给定路径是否存在
-if (file_exists($directory)&amp;&amp;file_exists($ddirectory)) 
-{   
-    //获取句柄
-    if ($handle=opendir($directory)) 
-    {   
-        //遍历
-        while ($file=readdir($handle)) 
-        {
-            if ($file!=&apos;.&apos; &amp;&amp; $file!=&apos;..&apos;) 
-            {   
-                //拼接
-                $subfile=$directory.&apos;/&apos;.$file;
-                $susfile=$ddirectory.&apos;/&apos;.$file;
-                if (is_dir($subfile))
-                 {
-
-                    mkdir(&quot;$susfile&quot;);
+        <p>复制整个目录的函数实现<br><a id="more"></a><br>    function cpdir($directory,$ddirectory)<br>    {<br>    //判断给定路径是否存在<br>    if (file_exists($directory)&amp;&amp;file_exists($ddirectory))<br>    {<br>        //获取句柄<br>        if ($handle=opendir($directory))<br>        {<br>            //遍历<br>            while ($file=readdir($handle))<br>            {<br>                if ($file!=’.’ &amp;&amp; $file!=’..’)<br>                {<br>                    //拼接<br>                    $subfile=$directory.’/‘.$file;<br>                    $susfile=$ddirectory.’/‘.$file;<br>                    if (is_dir($subfile))<br>                     {</p>
+<pre><code>                    mkdir(&quot;$susfile&quot;);
                     cpdir($subfile,$susfile);
                 }
                 if (is_file($subfile)) 
