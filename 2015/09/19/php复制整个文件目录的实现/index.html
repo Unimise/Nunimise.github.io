@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="复制整个目录的函数实现">
+<meta name="description" content="利用函数实现文件目录的复制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php复制整个文件目录的实现">
 <meta property="og:url" content="http://yoursite.com/2015/09/19/php复制整个文件目录的实现/index.html">
 <meta property="og:site_name" content="小六儿(*^__^*)">
-<meta property="og:description" content="复制整个目录的函数实现">
-<meta property="og:updated_time" content="2016-09-19T03:52:53.951Z">
+<meta property="og:description" content="利用函数实现文件目录的复制">
+<meta property="og:updated_time" content="2016-09-19T04:05:59.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php复制整个文件目录的实现">
-<meta name="twitter:description" content="复制整个目录的函数实现">
+<meta name="twitter:description" content="利用函数实现文件目录的复制">
 
 
 
@@ -345,8 +345,27 @@
       
 
       
-        <p>复制整个目录的函数实现<br><a id="more"></a><br>    function cpdir($directory,$ddirectory)<br>    {<br>    //判断给定路径是否存在<br>    if (file_exists($directory)&amp;&amp;file_exists($ddirectory))<br>    {<br>        //获取句柄<br>        if ($handle=opendir($directory))<br>        {<br>            //遍历<br>            while ($file=readdir($handle))<br>            {<br>                if ($file!=’.’ &amp;&amp; $file!=’..’)<br>                {<br>                    //拼接<br>                    $subfile=$directory.’/‘.$file;<br>                    $susfile=$ddirectory.’/‘.$file;<br>                    if (is_dir($subfile))<br>                     {</p>
-<pre><code>                    mkdir(&quot;$susfile&quot;);
+        <p>利用函数实现文件目录的复制<br><a id="more"></a></p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><pre><code>function cpdir($directory,$ddirectory)
+{    
+//判断给定路径是否存在
+if (file_exists($directory)&amp;&amp;file_exists($ddirectory)) 
+{   
+    //获取句柄
+    if ($handle=opendir($directory)) 
+    {   
+        //遍历
+        while ($file=readdir($handle)) 
+        {
+            if ($file!=&apos;.&apos; &amp;&amp; $file!=&apos;..&apos;) 
+            {   
+                //拼接
+                $subfile=$directory.&apos;/&apos;.$file;
+                $susfile=$ddirectory.&apos;/&apos;.$file;
+                if (is_dir($subfile))
+                 {
+
+                    mkdir(&quot;$susfile&quot;);
                     cpdir($subfile,$susfile);
                 }
                 if (is_file($subfile)) 
@@ -571,7 +590,7 @@ cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.</span> <span class="nav-text">源代码</span></a></li></ol></div>
             
           </div>
         </section>
