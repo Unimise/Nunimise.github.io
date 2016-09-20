@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #084700;
+  background: #4d11a2;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2111,7 +2111,7 @@ a.search-result {
   overflow: hidden;
 }
 body {
-  background: url("/images/backGround.jpg");
+  background: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
