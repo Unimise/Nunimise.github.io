@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-20T00:49:14.471Z</updated>
+  <updated>2016-09-20T01:18:22.262Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,50 +17,10 @@
   
   <entry>
     <title>IIS写权限漏洞</title>
-    <link href="http://yoursite.com/2016/09/20/IIS%E5%86%99%E6%9D%83%E9%99%90%E6%BC%8F%E6%B4%9E/"/>
-    <id>http://yoursite.com/2016/09/20/IIS写权限漏洞/</id>
-    <published>2016-09-20T00:48:19.000Z</published>
-    <updated>2016-09-20T00:49:14.471Z</updated>
-    
-    <content type="html"><![CDATA[<p>IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  </p>
-<ol>
-<li>WEB服务器扩展里设置WebDAV为允许；  </li>
-<li>网站权限配置开启了写入权限与脚本资源访问权限。  <a id="more"></a>
-<h3 id="先在Windows-server2003中搭建好实验环境。"><a href="#先在Windows-server2003中搭建好实验环境。" class="headerlink" title="先在Windows server2003中搭建好实验环境。"></a>先在Windows server2003中搭建好实验环境。</h3></li>
-</ol>
-<ul>
-<li>WEB服务器扩展里设置WebDAV和Active Server Pages为允许；  </li>
-<li>网站主目录权限配置开启写入权限与脚本资源访问权限；  </li>
-<li>TCP端口为80；  </li>
-<li>主目录属性-安全中来宾用户的权限为完全控制。<h3 id="使用桂林老兵的IISwriter"><a href="#使用桂林老兵的IISwriter" class="headerlink" title="使用桂林老兵的IISwriter"></a>使用桂林老兵的IISwriter</h3><img src="http://i.imgur.com/bUMh2il.png" alt=""><br>然后提交数据包，会在服务端生成一个test.txt的文件<br><img src="http://i.imgur.com/90B933M.png" alt=""><br>但是这个问津不能被IIS解析，所以要用move，主要目的是为了将txt的文件修改为asp，从而变成可执行的脚本文件。<br><img src="http://i.imgur.com/Qh4uVLK.png" alt=""><br>看一下，确实存在shell.asp文件<br><img src="http://i.imgur.com/8vuWmRI.png" alt=""><h3 id="用菜刀链接"><a href="#用菜刀链接" class="headerlink" title="用菜刀链接"></a>用菜刀链接</h3><img src="http://i.imgur.com/T1V0CU0.png" alt=""><h3 id="菜刀成功链接"><a href="#菜刀成功链接" class="headerlink" title="菜刀成功链接"></a>菜刀成功链接</h3><img src="http://i.imgur.com/beIwEEv.png" alt=""><br>成功拿到shel！<h3 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h3></li>
-<li>无法上传txt文件<br><img src="http://i.imgur.com/f0t8J5i.png" alt=""><br>原因：没有写入权限<br><img src="http://i.imgur.com/9r8IOzs.png" alt=""><br>原因：TCP端口不是80<br><img src="http://i.imgur.com/cCDvQW8.png" alt=""><br>原因：WEB服务器扩展里没有设置WebDAV为允许</li>
-<li>无法更改txt文件为asp文件<br><img src="http://i.imgur.com/fu790mL.png" alt=""></li>
-<li>菜刀出现故障<br><img src="http://i.imgur.com/uLwjk2W.png" alt=""><br>原因：WEB服务器扩展里没有设置Active Server Pages为允许</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;WEB服务器扩展里设置WebDAV为允许；  &lt;/li&gt;
-&lt;li&gt;网站权限配置开启了写入权限与脚本资源访问权限。
-    
-    </summary>
-    
-      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IIS写权限漏洞</title>
     <link href="http://yoursite.com/2015/10/20/IIS%E5%86%99%E6%9D%83%E9%99%90/"/>
     <id>http://yoursite.com/2015/10/20/IIS写权限/</id>
     <published>2015-10-20T00:48:19.000Z</published>
-    <updated>2016-09-20T00:55:27.360Z</updated>
+    <updated>2016-09-20T01:18:22.262Z</updated>
     
     <content type="html"><![CDATA[<p>IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  </p>
 <ul>
@@ -72,11 +32,28 @@
 <li>WEB服务器扩展里设置WebDAV和Active Server Pages为允许；  </li>
 <li>网站主目录权限配置开启写入权限与脚本资源访问权限；  </li>
 <li>TCP端口为80；  </li>
-<li>主目录属性-安全中来宾用户的权限为完全控制。<h3 id="使用桂林老兵的IISwriter"><a href="#使用桂林老兵的IISwriter" class="headerlink" title="使用桂林老兵的IISwriter"></a>使用桂林老兵的IISwriter</h3><img src="http://i.imgur.com/bUMh2il.png" alt=""><br>然后提交数据包，会在服务端生成一个test.txt的文件<br><img src="http://i.imgur.com/90B933M.png" alt=""><br>但是这个问津不能被IIS解析，所以要用move，主要目的是为了将txt的文件修改为asp，从而变成可执行的脚本文件。<br><img src="http://i.imgur.com/Qh4uVLK.png" alt=""><br>看一下，确实存在shell.asp文件<br><img src="http://i.imgur.com/8vuWmRI.png" alt=""><h3 id="用菜刀链接"><a href="#用菜刀链接" class="headerlink" title="用菜刀链接"></a>用菜刀链接</h3><img src="http://i.imgur.com/T1V0CU0.png" alt=""><h3 id="菜刀成功链接"><a href="#菜刀成功链接" class="headerlink" title="菜刀成功链接"></a>菜刀成功链接</h3><img src="http://i.imgur.com/beIwEEv.png" alt=""><br>成功拿到shel！<h3 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h3></li>
-<li>无法上传txt文件<br><img src="http://i.imgur.com/f0t8J5i.png" alt=""><br>原因：没有写入权限<br><img src="http://i.imgur.com/9r8IOzs.png" alt=""><br>原因：TCP端口不是80<br><img src="http://i.imgur.com/cCDvQW8.png" alt=""><br>原因：WEB服务器扩展里没有设置WebDAV为允许</li>
-<li>无法更改txt文件为asp文件<br><img src="http://i.imgur.com/fu790mL.png" alt=""></li>
-<li>菜刀出现故障<br><img src="http://i.imgur.com/uLwjk2W.png" alt=""><br>原因：WEB服务器扩展里没有设置Active Server Pages为允许</li>
+<li>主目录属性-安全中来宾用户的权限为完全控制。</li>
 </ul>
+<h3 id="使用桂林老兵的IISwriter"><a href="#使用桂林老兵的IISwriter" class="headerlink" title="使用桂林老兵的IISwriter"></a>使用桂林老兵的IISwriter</h3><p><img src="http://i.imgur.com/bUMh2il.png" alt=""><br>然后提交数据包，会在服务端生成一个test.txt的文件  </p>
+<p><img src="http://i.imgur.com/90B933M.png" alt=""><br>但是这个问津不能被IIS解析，所以要用move，主要目的是为了将txt的文件修改为asp，从而变成可执行的脚本文件。  </p>
+<p><img src="http://i.imgur.com/Qh4uVLK.png" alt=""><br>看一下，确实存在shell.asp文件  </p>
+<p><img src="http://i.imgur.com/8vuWmRI.png" alt="">  </p>
+<h3 id="用菜刀链接"><a href="#用菜刀链接" class="headerlink" title="用菜刀链接"></a>用菜刀链接</h3><p><img src="http://i.imgur.com/T1V0CU0.png" alt=""></p>
+<h3 id="菜刀成功链接"><a href="#菜刀成功链接" class="headerlink" title="菜刀成功链接"></a>菜刀成功链接</h3><p><img src="http://i.imgur.com/beIwEEv.png" alt=""><br>成功拿到shel！</p>
+<h3 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h3><ul>
+<li>无法上传txt文件</li>
+</ul>
+<p><img src="http://i.imgur.com/f0t8J5i.png" alt=""><br>原因：没有写入权限</p>
+<p><img src="http://i.imgur.com/9r8IOzs.png" alt=""><br>原因：TCP端口不是80</p>
+<p><img src="http://i.imgur.com/cCDvQW8.png" alt=""><br>原因：WEB服务器扩展里没有设置WebDAV为允许</p>
+<ul>
+<li>无法更改txt文件为asp文件</li>
+</ul>
+<p><img src="http://i.imgur.com/fu790mL.png" alt=""></p>
+<ul>
+<li>菜刀出现故障</li>
+</ul>
+<p><img src="http://i.imgur.com/uLwjk2W.png" alt=""><br>原因：WEB服务器扩展里没有设置Active Server Pages为允许</p>
 ]]></content>
     
     <summary type="html">
