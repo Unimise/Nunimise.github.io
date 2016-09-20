@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IIS," />
+  <meta name="keywords" content="PHP," />
 
 
 
@@ -92,7 +92,7 @@ WEB服务器扩展里设置WebDAV为允许；
 网站权限配置开启了写入权限与脚本资源访问权限。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IIS写权限漏洞">
-<meta property="og:url" content="http://yoursite.com/2016/09/19/IIS写权限漏洞/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/10/20/IIS写权限/index.html">
 <meta property="og:site_name" content="●(六儿)●">
 <meta property="og:description" content="IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  
 
@@ -109,7 +109,7 @@ WEB服务器扩展里设置WebDAV为允许；
 <meta property="og:image" content="http://i.imgur.com/cCDvQW8.png">
 <meta property="og:image" content="http://i.imgur.com/fu790mL.png">
 <meta property="og:image" content="http://i.imgur.com/uLwjk2W.png">
-<meta property="og:updated_time" content="2016-09-19T14:33:44.009Z">
+<meta property="og:updated_time" content="2016-09-20T00:55:27.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IIS写权限漏洞">
 <meta name="twitter:description" content="IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  
@@ -137,7 +137,7 @@ WEB服务器扩展里设置WebDAV为允许；
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/19/IIS写权限漏洞/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/10/20/IIS写权限/"/>
 
   <title> IIS写权限漏洞 | ●(六儿)● </title>
 </head>
@@ -312,8 +312,8 @@ WEB服务器扩展里设置WebDAV为允许；
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T21:30:57+08:00" content="2016-09-19">
-              2016-09-19
+            <time itemprop="dateCreated" datetime="2015-10-20T08:48:19+08:00" content="2015-10-20">
+              2015-10-20
             </time>
           </span>
 
@@ -326,8 +326,8 @@ WEB服务器扩展里设置WebDAV为允许；
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/漏洞/" itemprop="url" rel="index">
-                    <span itemprop="name">漏洞</span>
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
 
@@ -342,8 +342,8 @@ WEB服务器扩展里设置WebDAV为允许；
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/IIS写权限漏洞/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/IIS写权限漏洞/" itemprop="commentsCount"></span>
+                <a href="/2015/10/20/IIS写权限/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/IIS写权限/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -353,7 +353,7 @@ WEB服务器扩展里设置WebDAV为允许；
 
           
           
-             <span id="/2016/09/19/IIS写权限漏洞/" class="leancloud_visitors" data-flag-title="IIS写权限漏洞">
+             <span id="/2015/10/20/IIS写权限/" class="leancloud_visitors" data-flag-title="IIS写权限漏洞">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -376,16 +376,16 @@ WEB服务器扩展里设置WebDAV为允许；
 
       
         <p>IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  </p>
-<ol>
+<ul>
 <li>WEB服务器扩展里设置WebDAV为允许；  </li>
-<li>网站权限配置开启了写入权限与脚本资源访问权限。  <a id="more"></a>
-<h3 id="先在Windows-server2003中搭建好实验环境。"><a href="#先在Windows-server2003中搭建好实验环境。" class="headerlink" title="先在Windows server2003中搭建好实验环境。"></a>先在Windows server2003中搭建好实验环境。</h3></li>
+<li>网站权限配置开启了写入权限与脚本资源访问权限。  </li>
+</ul>
+<a id="more"></a>
+<h3 id="先在Windows-server2003中搭建好实验环境。"><a href="#先在Windows-server2003中搭建好实验环境。" class="headerlink" title="先在Windows server2003中搭建好实验环境。"></a>先在Windows server2003中搭建好实验环境。</h3><ul>
 <li>WEB服务器扩展里设置WebDAV和Active Server Pages为允许；  </li>
 <li>网站主目录权限配置开启写入权限与脚本资源访问权限；  </li>
 <li>TCP端口为80；  </li>
 <li>主目录属性-安全中来宾用户的权限为完全控制。<h3 id="使用桂林老兵的IISwriter"><a href="#使用桂林老兵的IISwriter" class="headerlink" title="使用桂林老兵的IISwriter"></a>使用桂林老兵的IISwriter</h3><img src="http://i.imgur.com/bUMh2il.png" alt=""><br>然后提交数据包，会在服务端生成一个test.txt的文件<br><img src="http://i.imgur.com/90B933M.png" alt=""><br>但是这个问津不能被IIS解析，所以要用move，主要目的是为了将txt的文件修改为asp，从而变成可执行的脚本文件。<br><img src="http://i.imgur.com/Qh4uVLK.png" alt=""><br>看一下，确实存在shell.asp文件<br><img src="http://i.imgur.com/8vuWmRI.png" alt=""><h3 id="用菜刀链接"><a href="#用菜刀链接" class="headerlink" title="用菜刀链接"></a>用菜刀链接</h3><img src="http://i.imgur.com/T1V0CU0.png" alt=""><h3 id="菜刀成功链接"><a href="#菜刀成功链接" class="headerlink" title="菜刀成功链接"></a>菜刀成功链接</h3><img src="http://i.imgur.com/beIwEEv.png" alt=""><br>成功拿到shel！<h3 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h3></li>
-</ol>
-<ul>
 <li>无法上传txt文件<br><img src="http://i.imgur.com/f0t8J5i.png" alt=""><br>原因：没有写入权限<br><img src="http://i.imgur.com/9r8IOzs.png" alt=""><br>原因：TCP端口不是80<br><img src="http://i.imgur.com/cCDvQW8.png" alt=""><br>原因：WEB服务器扩展里没有设置WebDAV为允许</li>
 <li>无法更改txt文件为asp文件<br><img src="http://i.imgur.com/fu790mL.png" alt=""></li>
 <li>菜刀出现故障<br><img src="http://i.imgur.com/uLwjk2W.png" alt=""><br>原因：WEB服务器扩展里没有设置Active Server Pages为允许</li>
@@ -417,7 +417,7 @@ WEB服务器扩展里设置WebDAV为允许；
       
         <div class="post-tags">
           
-            <a href="/tags/IIS/" rel="tag">#IIS</a>
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
           
         </div>
       
@@ -433,6 +433,10 @@ WEB服务器扩展里设置WebDAV为允许；
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/20/IIS写权限漏洞/" rel="prev" title="IIS写权限漏洞">
+                IIS写权限漏洞 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -462,8 +466,8 @@ WEB服务器扩展里设置WebDAV为允许；
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/19/IIS写权限漏洞/"
-           data-title="IIS写权限漏洞" data-url="http://yoursite.com/2016/09/19/IIS写权限漏洞/">
+      <div class="ds-thread" data-thread-key="2015/10/20/IIS写权限/"
+           data-title="IIS写权限漏洞" data-url="http://yoursite.com/2015/10/20/IIS写权限/">
       </div>
     
   </div>
@@ -508,7 +512,7 @@ WEB服务器扩展里设置WebDAV为允许；
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -516,7 +520,7 @@ WEB服务器扩展里设置WebDAV为允许；
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -525,7 +529,7 @@ WEB服务器扩展里设置WebDAV为允许；
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
