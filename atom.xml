@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-20T05:30:47.375Z</updated>
+  <updated>2016-09-20T06:07:55.991Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2015/10/20/IIS%E5%86%99%E6%9D%83%E9%99%90/"/>
     <id>http://yoursite.com/2015/10/20/IIS写权限/</id>
     <published>2015-10-20T00:48:19.000Z</published>
-    <updated>2016-09-20T05:30:47.375Z</updated>
+    <updated>2016-09-20T06:07:55.991Z</updated>
     
     <content type="html"><![CDATA[<p>IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  </p>
 <ul>
@@ -66,10 +66,10 @@
     
     </summary>
     
-      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="漏洞" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E/"/>
     
     
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+      <category term="IIS" scheme="http://yoursite.com/tags/IIS/"/>
     
   </entry>
   
