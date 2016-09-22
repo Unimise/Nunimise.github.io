@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-21T02:03:16.642Z</updated>
+  <updated>2016-09-22T06:22:24.348Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WEB踩点</title>
+    <link href="http://yoursite.com/2016/09/22/WEB%E8%B8%A9%E7%82%B9/"/>
+    <id>http://yoursite.com/2016/09/22/WEB踩点/</id>
+    <published>2016-09-22T05:25:55.000Z</published>
+    <updated>2016-09-22T06:22:24.348Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于白帽子来说，在开始渗透之前，必须先完成信息收集，那么信息收集的第一步是什么呢？就是WEB踩点。<br><a id="more"></a></p>
+<h3 id="什么是踩点"><a href="#什么是踩点" class="headerlink" title="什么是踩点"></a>什么是踩点</h3><p>踩点：就是对指定目标进行系统的网站信息收集，攻击者将尽可能多的收集目标单位的安全情况的方方面面。</p>
+<h3 id="为什么要踩点"><a href="#为什么要踩点" class="headerlink" title="为什么要踩点"></a>为什么要踩点</h3><p>知己知彼，百战不殆。<br>每个人都有自己的习惯、思维方式，发掘他的习惯、思维方式，就是他的弱点。踩点是最辛苦的任务之一，它也是最枯燥的，同样也是最重要的任务之一。</p>
+<h3 id="WEB踩点的常见手段"><a href="#WEB踩点的常见手段" class="headerlink" title="WEB踩点的常见手段"></a>WEB踩点的常见手段</h3><h4 id="0x01-网站共享主机（旁注）"><a href="#0x01-网站共享主机（旁注）" class="headerlink" title="0x01  网站共享主机（旁注）"></a>0x01  网站共享主机（旁注）</h4><p>旁注是网络上比较流行的一种入侵方法，在字面上解释就是”从旁注入”，利用同一主机上面不同网站的漏洞得到 webshell，从而利用主机上的程序或者是服务所暴露的用户所在的物理路径进行入侵。<br>网站共享主机漏洞是更为严谨的学术叫法。    </p>
+<ul>
+<li><p>关于c段旁注<br>旁注与C段嗅探的意义，旁注的意思就是从同台服务器上的其他网站入手，提权，然后把服务器端了，就自然把那个网站端了。C段嗅探，每个IP有 ABCD 四个段，举个例子192.168.0.1，A段就是192，B段是168，C段0，D 段是1，而C段嗅探的意思就是拿下它同一C段中的其中一台服务器，也就是说是D段1-255 中的一台服务器，然后利用工具嗅探拿下该服务。     </p>
+</li>
+<li><p>旁站入侵和C段入侵哪个更理想<br>旁站入侵更为理想。C段嗅探还涉及到提权，ARP。还要等待管理员登陆，才能抓取到密码。</p>
+</li>
+<li><p>常用工具<br>k8_c段旁注查询工具</p>
+</li>
+</ul>
+<h4 id="0x02-WHOIS服务"><a href="#0x02-WHOIS服务" class="headerlink" title="0x02  WHOIS服务"></a>0x02  WHOIS服务</h4><p>利用whois服务，可以获取与目标相关的具体信息，包括注册人邮箱，IP地址，公司DNS主机名以及地址和电话号码等信息。</p>
+<ul>
+<li>whois信息一定可以查到所需要信息的吗？如果查不到是什么原因？<br>不一定哦，稍微有安全意识的注册人会设置隐私保护</li>
+<li>常用工具<br>站长之家，爱站网</li>
+</ul>
+<h4 id="0x03-二级域名"><a href="#0x03-二级域名" class="headerlink" title="0x03  二级域名"></a>0x03  二级域名</h4><ul>
+<li>搜索引擎 site指令<br>百度，谷歌，必应</li>
+<li>dns区域传送/域名暴力枚举<br>fierce 是使用多种技术来扫描目标主机IP地址和主机名的一个DNS服务枚举工具。<br>工作原理：先通过查询本地DNS服务器来查询目标DNS服务器，然后使用目标DNS服务器来查找子域名。<br>具体命令：fierce -dns ccb.com -threads（线程数） 100</li>
+</ul>
+<h4 id="0x04-CDN后的真实IP"><a href="#0x04-CDN后的真实IP" class="headerlink" title="0x04 CDN后的真实IP"></a>0x04 CDN后的真实IP</h4><ul>
+<li><p>CDN概述<br>CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决Internet网络拥挤的状况，提高用户访问网站的响应速度。</p>
+</li>
+<li><p>获得真实IP的方法<br>phpinfo中的server_addr的IP地址百分百是真实服务器的IP地址。<br>先看主站是否有phpinfo的页面，如果没有的话就查看他的二级域名中是否存在phpinfo页面.</p>
+</li>
+</ul>
+<h4 id="0x05-c段子网网关"><a href="#0x05-c段子网网关" class="headerlink" title="0x05 c段子网网关"></a>0x05 c段子网网关</h4><p>通过路由跟踪排除c段不同网关邻居主机。    </p>
+<ul>
+<li><p>windows下的命令：只支持icmp（ping）协议，有些服务器会丢弃icmp协议    </p>
+<pre><code>tracert [-d] [-h maximum_hops] [-j host-list] [-w timeout] [-R] [-S srcaddr] [-4] [-6] target_name
+
+-d                 不将地址解析成主机名。
+-h maximum_hops    搜索目标的最大跃点数。
+-j host-list       与主机列表一起的松散源路由(仅适用于 IPv4)。
+-w timeout         等待每个回复的超时时间(以毫秒为单位)。
+-R                 跟踪往返行程路径(仅适用于 IPv6)。
+-S srcaddr         要使用的源地址(仅适用于 IPv6)。
+-4                 强制使用 IPv4。
+-6                 强制使用 IPv6。
+</code></pre></li>
+</ul>
+<ul>
+<li><p>linux下的命令：     </p>
+<pre><code>traceroute -n -T -p 53 ip地址    
+traceroute -n -T -p 80 //优先    
+traceroute -n -I -p 80 //优先    
+traceroute -T  -p 80     
+-n 不解析主机名    
+-p指定端口    
+-T指定协议为TCP    
+-S指定发送源端口   
+</code></pre></li>
+</ul>
+<h4 id="0x06-IDC机房ISP信息"><a href="#0x06-IDC机房ISP信息" class="headerlink" title="0x06 IDC机房ISP信息"></a>0x06 IDC机房ISP信息</h4><ul>
+<li>通过ip查询    <pre><code>nmap -Pn -n -sC -sV -p 80 211.147.4-6.1-254     
+</code></pre>扫描目标网段的http-title，获取路由器title.</li>
+</ul>
+<ul>
+<li>全球注册信息管理机构：<br>北美  arin.net<br>欧洲  ripe.net<br>亚洲  www.apnic.net<br>拉丁美洲/加勒比  whois.lacnic.net</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于白帽子来说，在开始渗透之前，必须先完成信息收集，那么信息收集的第一步是什么呢？就是WEB踩点。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="WEB" scheme="http://yoursite.com/tags/WEB/"/>
+    
+  </entry>
   
   <entry>
     <title>IIS写权限漏洞</title>
