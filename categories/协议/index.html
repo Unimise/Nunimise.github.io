@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,16 +86,15 @@
 
 
 
-<meta name="description" content="利用函数实现文件目录的复制">
-<meta property="og:type" content="article">
-<meta property="og:title" content="php复制整个文件目录的实现">
-<meta property="og:url" content="http://yoursite.com/2016/09/10/php复制整个文件目录的实现/index.html">
+<meta name="description" content="小六">
+<meta property="og:type" content="website">
+<meta property="og:title" content="●(六儿)●">
+<meta property="og:url" content="http://yoursite.com/categories/协议/index.html">
 <meta property="og:site_name" content="●(六儿)●">
-<meta property="og:description" content="利用函数实现文件目录的复制">
-<meta property="og:updated_time" content="2016-09-21T02:03:02.142Z">
+<meta property="og:description" content="小六">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php复制整个文件目录的实现">
-<meta name="twitter:description" content="利用函数实现文件目录的复制">
+<meta name="twitter:title" content="●(六儿)●">
+<meta name="twitter:description" content="小六">
 
 
 
@@ -116,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/10/php复制整个文件目录的实现/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/协议/"/>
 
-  <title> php复制整个文件目录的实现 | ●(六儿)● </title>
+  <title> 分类: 协议 | ●(六儿)● </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -288,205 +287,47 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                php复制整个文件目录的实现
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-10T11:33:29+08:00" content="2016-09-10">
-              2016-09-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/10/php复制整个文件目录的实现/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/php复制整个文件目录的实现/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/09/10/php复制整个文件目录的实现/" class="leancloud_visitors" data-flag-title="php复制整个文件目录的实现">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>利用函数实现文件目录的复制<br><a id="more"></a></p>
-<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><pre><code>function cpdir($directory,$ddirectory)
-{    
-//判断给定路径是否存在
-if (file_exists($directory)&amp;&amp;file_exists($ddirectory)) 
-{   
-    //获取句柄
-    if ($handle=opendir($directory)) 
-    {   
-        //遍历
-        while ($file=readdir($handle)) 
-        {
-            if ($file!=&apos;.&apos; &amp;&amp; $file!=&apos;..&apos;) 
-            {   
-                //拼接
-                $subfile=$directory.&apos;/&apos;.$file;
-                $susfile=$ddirectory.&apos;/&apos;.$file;
-                if (is_dir($subfile))
-                 {
-
-                    mkdir(&quot;$susfile&quot;);
-                    cpdir($subfile,$susfile);
-                }
-                if (is_file($subfile)) 
-                {
-                    copy($subfile,$susfile );
-                }
-
-            }
-        }
-        closedir($handle);
-    }
-}
-}
-
-cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
-</code></pre>
-      
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        协议
+        <small>分类</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode.jpg" alt="小六 wechat" style="width: 200px; max-width: 100%;"/>
-    <div>微信扫一扫！</div>
-</div>
-
-
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/09/25/HTTP协议/" itemprop="url">
+              
+                <span itemprop="name">HTTP协议</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-25T19:46:57+08:00"
+              content="2016-09-25" >
+          09-25
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/08/23/hello-world/" rel="next" title="hello word">
-                <i class="fa fa-chevron-left"></i> hello word
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/19/IIS写权限/" rel="prev" title="IIS写权限漏洞">
-                IIS写权限漏洞 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  
 
-      
-    </div>
-  </div>
 
 
           </div>
@@ -494,14 +335,6 @@ cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/09/10/php复制整个文件目录的实现/"
-           data-title="php复制整个文件目录的实现" data-url="http://yoursite.com/2016/09/10/php复制整个文件目录的实现/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -521,17 +354,8 @@ cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/2.jpg"
@@ -626,17 +450,6 @@ cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#源代码"><span class="nav-number">1.</span> <span class="nav-text">源代码</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -733,10 +546,6 @@ cpdir(&apos;./re02&apos;,&apos;./cp&apos;);`
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
