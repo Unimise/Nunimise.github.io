@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-26T12:56:30.010Z</updated>
+  <updated>2016-09-26T13:01:39.285Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>“WEB漏洞扫描器</title>
+    <title>WEB漏洞扫描器</title>
     <link href="http://yoursite.com/2016/09/26/WEB%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
     <id>http://yoursite.com/2016/09/26/WEB漏洞扫描器/</id>
     <published>2016-09-26T12:36:23.000Z</published>
-    <updated>2016-09-26T12:56:30.010Z</updated>
+    <updated>2016-09-26T13:01:39.285Z</updated>
     
     <content type="html"><![CDATA[<p>一个好的漏洞扫描器在渗透测试中是至关重要的，可以极大的提高工作效率。<br><a id="more"></a></p>
 <h4 id="一、什么是web漏洞扫描器"><a href="#一、什么是web漏洞扫描器" class="headerlink" title="一、什么是web漏洞扫描器"></a>一、什么是web漏洞扫描器</h4><p>针对网站漏洞的自动化扣动检测工具，相对于主机及漏洞扫描，例如nessus也可以检测网站漏洞的功能，web漏洞扫描器的主要功能是检测网站漏洞。</p>
