@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-25T12:13:17.779Z</updated>
+  <updated>2016-09-26T12:56:30.010Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“WEB漏洞扫描器</title>
+    <link href="http://yoursite.com/2016/09/26/WEB%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/09/26/WEB漏洞扫描器/</id>
+    <published>2016-09-26T12:36:23.000Z</published>
+    <updated>2016-09-26T12:56:30.010Z</updated>
+    
+    <content type="html"><![CDATA[<p>一个好的漏洞扫描器在渗透测试中是至关重要的，可以极大的提高工作效率。<br><a id="more"></a></p>
+<h4 id="一、什么是web漏洞扫描器"><a href="#一、什么是web漏洞扫描器" class="headerlink" title="一、什么是web漏洞扫描器"></a>一、什么是web漏洞扫描器</h4><p>针对网站漏洞的自动化扣动检测工具，相对于主机及漏洞扫描，例如nessus也可以检测网站漏洞的功能，web漏洞扫描器的主要功能是检测网站漏洞。</p>
+<h4 id="二、扫描器的局限"><a href="#二、扫描器的局限" class="headerlink" title="二、扫描器的局限"></a>二、扫描器的局限</h4><ol>
+<li>web应用程序各不相同    </li>
+<li>扫描器不理解语法    </li>
+<li>扫描器不会即兴处理    </li>
+<li>扫描器并无直觉</li>
+</ol>
+<h4 id="三、AWVS漏洞扫描器"><a href="#三、AWVS漏洞扫描器" class="headerlink" title="三、AWVS漏洞扫描器"></a>三、AWVS漏洞扫描器</h4><p>AWVS （Acunetix Web Wulnerability Scanner）是一个自动化的 Web 应用程序安全测试工具，它可以扫描任何可通过Web浏览器访问的和遵循HTTP/HTTPS规则的Web站点和Web应用程序、国内普遍简称WVS。</p>
+<h5 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h5><ul>
+<li>运行 2015_07_07_00_webvulnscan10.exe 出现如下界面。<br><img src="http://i.imgur.com/5SuVXSi.png" alt=""> </li>
+<li>next<br><img src="http://i.imgur.com/q1QhPBa.png" alt=""></li>
+<li>接受<br><img src="http://i.imgur.com/7rUVZd3.png" alt=""></li>
+<li>next<br><img src="http://i.imgur.com/gq9rxmB.png" alt=""></li>
+<li>安装证书（用于HTTPS测试），next<br><img src="http://i.imgur.com/jcp22cl.png" alt=""></li>
+<li>创建桌面图标，next<br><img src="http://i.imgur.com/BN17YiQ.png" alt=""></li>
+<li>安装准备确认，install<br><img src="http://i.imgur.com/F8k6yu4.png" alt=""></li>
+<li>安装证书，选是<br><img src="http://i.imgur.com/tidOTVH.png" alt=""></li>
+<li>先不选finish<br><img src="http://i.imgur.com/p2YQEOk.png" alt=""></li>
+<li>运行破解补丁</li>
+<li>Patch<br><img src="http://i.imgur.com/XXqR0H2.png" alt=""></li>
+<li>成功后关闭破解程序</li>
+<li>完成安装，选finish自动启动awvs<br><img src="http://i.imgur.com/kZrL550.png" alt=""></li>
+<li>破解补丁激活，next。<br><img src="http://i.imgur.com/pAsdAkp.png" alt=""></li>
+<li>next<br><img src="http://i.imgur.com/xpgOqiR.png" alt=""></li>
+<li>完成破解，同时点finish和确定</li>
+<li>桌面启动<br><img src="http://i.imgur.com/yOzM6Qy.png" alt=""></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个好的漏洞扫描器在渗透测试中是至关重要的，可以极大的提高工作效率。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="WEB" scheme="http://yoursite.com/tags/WEB/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTP协议</title>
