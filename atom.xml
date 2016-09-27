@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-26T13:01:39.285Z</updated>
+  <updated>2016-09-27T14:36:32.079Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webinspect扫描器</title>
+    <link href="http://yoursite.com/2016/09/27/webinspect%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/09/27/webinspect扫描器/</id>
+    <published>2016-09-27T13:34:40.000Z</published>
+    <updated>2016-09-27T14:36:32.079Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前，许多复杂的 Web 应用程序全都基于新兴的 Web 2.0 技术，HP WebInspect 可以对这些应用程序执行 Web 应用程序安全测试和评估。HP WebInspect 可提供快速扫描功能、广泛的安全评估范围及准确的 Web 应用程序安全扫描结果。它可以识别很多传统扫描程序检测不到的安全漏洞。利用创新的评估技术.<br><a id="more"></a></p>
+<h4 id="WebInspect安装使用"><a href="#WebInspect安装使用" class="headerlink" title="WebInspect安装使用"></a>WebInspect安装使用</h4><ul>
+<li>如果系统安装过.NET Framework 4.5,跳过安装此程序<br>运行dotnetfx45_full_x86_x64.exe</li>
+</ul>
+<p><img src="http://i.imgur.com/589m9Cd.png" alt=""></p>
+<p><img src="http://i.imgur.com/074eff5.png" alt=""></p>
+<ul>
+<li>运行SQLEXPR_x64_CHS.exe</li>
+</ul>
+<p><img src="http://i.imgur.com/s5O3YoN.png" alt=""></p>
+<p><img src="http://i.imgur.com/NvGvDsh.png" alt=""></p>
+<p><img src="http://i.imgur.com/ecc7pTI.png" alt=""><br>上图中如有管理工具，选择完整<br><img src="http://i.imgur.com/HsKBIN9.png" alt=""></p>
+<p><img src="http://i.imgur.com/C9JnOC3.png" alt=""></p>
+<p><img src="http://i.imgur.com/fKqVu0U.png" alt=""></p>
+<ul>
+<li>运行WebInspect 10.2.exe</li>
+</ul>
+<p><img src="http://i.imgur.com/HYhv4rQ.png" alt=""></p>
+<p><img src="http://i.imgur.com/e5bsI4w.png" alt=""></p>
+<p><img src="http://i.imgur.com/RmlLt3k.png" alt=""></p>
+<p><img src="http://i.imgur.com/8BRnj2T.png" alt=""></p>
+<p><img src="http://i.imgur.com/SDKISPn.png" alt=""></p>
+<p><img src="http://i.imgur.com/8RvArXk.png" alt=""></p>
+<ul>
+<li>复制WI8.exe和HPLicense.xml到C:\Program Files (x86)\HP\HP WebInspect。运行WI8..exe</li>
+</ul>
+<p><img src="http://i.imgur.com/D0QQqJY.png" alt="">    </p>
+<p><img src="http://i.imgur.com/oC0hyeV.png" alt=""></p>
+<ul>
+<li>复制破解补丁目录下的hosts文件覆盖C:\Windows\System32\drivers\etc的hosts文件。</li>
+</ul>
+<p><img src="http://i.imgur.com/7e8XxnZ.png" alt="">    </p>
+<p><img src="http://i.imgur.com/xLliSnf.png" alt="">    </p>
+<p><img src="http://i.imgur.com/F2PlnBw.png" alt="">    </p>
+<p><img src="http://i.imgur.com/RTfyh2K.png" alt=""></p>
+<ul>
+<li>打开HP WebInspect</li>
+</ul>
+<p><img src="http://i.imgur.com/nDNEHIf.png" alt="">    </p>
+<p><img src="http://i.imgur.com/84QXtjd.png" alt="">        </p>
+<p><img src="http://i.imgur.com/FKLr0Ks.png" alt="">       </p>
+<p><img src="http://i.imgur.com/iMocxbj.png" alt="">    </p>
+<p><img src="http://i.imgur.com/jVwv4h7.png" alt=""><br>安装完成！</p>
+<h4 id="WebInspect新建扫描任务"><a href="#WebInspect新建扫描任务" class="headerlink" title="WebInspect新建扫描任务"></a>WebInspect新建扫描任务</h4><ul>
+<li>按箭头所指新建扫描任务</li>
+</ul>
+<p><img src="http://i.imgur.com/FJHOc7y.png" alt=""></p>
+<p><img src="http://i.imgur.com/zIPe7F6.png" alt=""></p>
+<ul>
+<li>输入目标地址</li>
+</ul>
+<p><img src="http://i.imgur.com/pWPAP0Y.png" alt=""></p>
+<p><img src="http://i.imgur.com/3lusk7N.png" alt=""></p>
+<p><img src="http://i.imgur.com/BiGfcKO.png" alt=""></p>
+<ul>
+<li>创建自动登录</li>
+</ul>
+<p><img src="http://i.imgur.com/MbXwhnC.png" alt=""></p>
+<p><img src="http://i.imgur.com/IbWHEnY.png" alt=""></p>
+<p><img src="http://i.imgur.com/ffQzsVv.png" alt=""></p>
+<p><img src="http://i.imgur.com/7FZSZs8.png" alt=""></p>
+<p><img src="http://i.imgur.com/kzfR7zm.png" alt=""></p>
+<p><img src="http://i.imgur.com/gT9OGej.png" alt=""></p>
+<p><img src="http://i.imgur.com/FID4NmY.png" alt=""></p>
+<ul>
+<li>双击登录后才会有的标志，点击play</li>
+</ul>
+<p><img src="http://i.imgur.com/Uvx9ybz.png" alt=""><br><img src="http://i.imgur.com/BmgOuZ9.png" alt=""></p>
+<ul>
+<li>自动登录设置完成，下一步</li>
+</ul>
+<p><img src="http://i.imgur.com/NwhuJ0h.png" alt=""></p>
+<p><img src="http://i.imgur.com/Sn976xZ.png" alt=""></p>
+<p><img src="http://i.imgur.com/CYA4Or2.png" alt=""></p>
+<p><img src="http://i.imgur.com/LQDJJKp.png" alt=""></p>
+<p><img src="http://i.imgur.com/SZpvRca.png" alt=""></p>
+<ul>
+<li>开始扫描</li>
+<li><img src="http://i.imgur.com/seStIvB.png" alt=""></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前，许多复杂的 Web 应用程序全都基于新兴的 Web 2.0 技术，HP WebInspect 可以对这些应用程序执行 Web 应用程序安全测试和评估。HP WebInspect 可提供快速扫描功能、广泛的安全评估范围及准确的 Web 应用程序安全扫描结果。它可以识别很多传统扫描程序检测不到的安全漏洞。利用创新的评估技术.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="WEB" scheme="http://yoursite.com/tags/WEB/"/>
+    
+  </entry>
   
   <entry>
     <title>WEB漏洞扫描器</title>
