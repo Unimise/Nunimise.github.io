@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ac9aff;
+  background: #0fffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2111,9 +2111,9 @@ a.search-result {
   overflow: hidden;
 }
 body {
-  background: url("/images/background.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background: url("/images/background.jpg") rgba(194,240,194,0.99) no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 h1,
 h2,
@@ -2281,6 +2281,8 @@ hr {
 }
 .posts-expand {
   padding-top: 0;
+  background-color: rgba(255,255,255,0.8);
+  padding: 10%;
 }
 .posts-expand .post-title,
 .posts-expand .post-meta {
@@ -2297,6 +2299,7 @@ hr {
 }
 .posts-expand .post {
   margin-top: 120px;
+  color: #000;
 }
 .posts-expand .post:first-child {
   margin-top: 0;
@@ -2304,8 +2307,10 @@ hr {
 .posts-expand .post-meta {
   margin-top: 5px;
   margin-bottom: 20px;
+  color: #000;
 }
 .posts-expand .post-title {
+  color: #000;
   position: relative;
   font-size: 26px;
   font-weight: 400;
@@ -2327,6 +2332,7 @@ hr {
   margin: 0;
 }
 .posts-expand .post-tags {
+  color: #000;
   text-align: left;
 }
 .posts-expand .post-tags a {
@@ -2341,6 +2347,7 @@ hr {
   margin-top: 40px;
 }
 .post-more-link {
+  color: #000;
   margin-top: 20px;
   text-align: left;
 }
