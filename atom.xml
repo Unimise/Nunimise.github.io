@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-31T08:31:48.367Z</updated>
+  <updated>2016-11-07T07:55:16.179Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python工具之Nmap端口扫描器</title>
+    <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8BNmap%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/11/07/Python工具之Nmap端口扫描器/</id>
+    <published>2016-11-07T07:55:16.000Z</published>
+    <updated>2016-11-07T07:55:16.179Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python工具之TCP全连接端口扫描器</title>
+    <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8BTCP%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/11/07/Python工具之TCP全连接端口扫描器/</id>
+    <published>2016-11-07T07:54:52.000Z</published>
+    <updated>2016-11-07T07:54:52.191Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python工具之zip文件口令破解机</title>
+    <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8Bzip%E6%96%87%E4%BB%B6%E5%8F%A3%E4%BB%A4%E7%A0%B4%E8%A7%A3%E6%9C%BA/"/>
+    <id>http://yoursite.com/2016/11/07/Python工具之zip文件口令破解机/</id>
+    <published>2016-11-07T07:54:28.000Z</published>
+    <updated>2016-11-07T08:50:05.173Z</updated>
+    
+    <content type="html"><![CDATA[<p>zip文件口令破解,可以指定文件名和密码字典<br><a id="more"></a></p>
+<pre><code>#coding:utf-8
+import zipfile,threading,time,optparse
+
+def breakzip(zfile,passwd):
+    try:
+        zfile.extractall(pwd=passwd)#extractall方法是用来解压zip文件的，如果是有密码的文件可以用pwd=指定密码       
+        print(&apos;成功匹配到密码：{}&apos;.format(passwd))
+    except Exception,e:#Exception是异常处理，将异常信息存在变量e中
+        return
+
+def main():
+    parser=optparse.OptionParser(&apos;请输入正确的参数形式 -f &lt;zipfile&gt; -d &lt;dictionary&gt;&apos;)#创建一个optionparser的对象，参数在打印命令被调用时显示出来
+    parser.add_option(&apos;-f&apos;,dest=&apos;zname&apos;,type=&apos;string&apos;,help=&apos;指定zip文件名&apos;)#add_option()用来添加选项，dest存储的变量，type类型，help帮助信息
+    parser.add_option(&apos;-d&apos;,dest=&apos;dname&apos;,type=&apos;string&apos;,help=&apos;指定字典文件&apos;)
+    (options,args)=parser.parse_args()#定义好了所有的命令行参数，调用 parse_args() 来解析程序的命令行
+    #options，它是一个对象（optpars.Values），保存有命令行参数值。只要知道命令行参数名，如 file，就可以访问其对应的值： options.file 
+    #args，它是一个由 positional arguments 组成的列表。
+    if (options.zname == None) or (options.dname == None):#如果没有指定参数
+        print(parser.usage) #输出提示信息
+        exit(0)
+    else:
+        zname=options.zname
+        dname=options.dname
+    zfile=zipfile.ZipFile(zname)
+    passfile=open(dname)
+    print(&apos;正在匹配密码，请等待...&apos;)
+    for line in passfile.readlines():
+        passwd=line.split(&apos;\n&apos;)[0]
+        #breakzip(zfile, passwd)
+        thread=threading.Thread(target=breakzip,args=(zfile,passwd))
+        thread.start()
+
+if __name__ == &apos;__main__&apos;:
+    main()
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;zip文件口令破解,可以指定文件名和密码字典&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>文件上传漏洞之FCK编辑器</title>
