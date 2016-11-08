@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/09/22/WEB%E8%B8%A9%E7%82%B9/</loc>
+    
+    <lastmod>2016-11-08T10:02:10.267Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8Bzip%E6%96%87%E4%BB%B6%E5%8F%A3%E4%BB%A4%E7%A0%B4%E8%A7%A3%E6%9C%BA/</loc>
     
     <lastmod>2016-11-07T08:50:05.173Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://yoursite.com/2016/09/25/HTTP%E5%8D%8F%E8%AE%AE/</loc>
     
     <lastmod>2016-09-25T12:13:17.779Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/09/22/WEB%E8%B8%A9%E7%82%B9/</loc>
-    
-    <lastmod>2016-09-22T06:22:24.348Z</lastmod>
     
   </url>
   

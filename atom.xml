@@ -515,7 +515,7 @@ inurl:yb/index.php
     <link href="http://yoursite.com/2016/09/22/WEB%E8%B8%A9%E7%82%B9/"/>
     <id>http://yoursite.com/2016/09/22/WEB踩点/</id>
     <published>2016-09-22T05:25:55.000Z</published>
-    <updated>2016-09-22T06:22:24.348Z</updated>
+    <updated>2016-11-08T10:02:10.267Z</updated>
     
     <content type="html"><![CDATA[<p>对于白帽子来说，在开始渗透之前，必须先完成信息收集，那么信息收集的第一步是什么呢？就是WEB踩点。<br><a id="more"></a></p>
 <h3 id="什么是踩点"><a href="#什么是踩点" class="headerlink" title="什么是踩点"></a>什么是踩点</h3><p>踩点：就是对指定目标进行系统的网站信息收集，攻击者将尽可能多的收集目标单位的安全情况的方方面面。</p>
