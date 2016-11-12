@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="小六">
+<meta name="description" content="使用TCP全连接扫描来识别主机的TCP端口扫描器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python工具之TCP全连接端口扫描器">
 <meta property="og:url" content="http://yoursite.com/2016/11/07/Python工具之TCP全连接端口扫描器/index.html">
 <meta property="og:site_name" content="●(六儿)●">
-<meta property="og:description" content="小六">
-<meta property="og:updated_time" content="2016-11-07T07:54:52.191Z">
+<meta property="og:description" content="使用TCP全连接扫描来识别主机的TCP端口扫描器">
+<meta property="og:updated_time" content="2016-11-12T02:56:46.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python工具之TCP全连接端口扫描器">
-<meta name="twitter:description" content="小六">
+<meta name="twitter:description" content="使用TCP全连接扫描来识别主机的TCP端口扫描器">
 
 
 
@@ -297,6 +297,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -335,7 +354,77 @@
       
 
       
-        
+        <p>使用TCP全连接扫描来识别主机的TCP端口扫描器</p>
+<a id="more"></a>
+<pre><code>#coding:utf-8
+import optparse,threading,multiprocessing
+from socket import * #把socket下的所有名字引入当前名称空间
+
+screenLock=multiprocessing.Semaphore(value=1)
+def portscan(tgtHost,tgtPosts):
+    try:
+        tgtIP=gethostbyname(tgtHost)#gethostbyname()返回的是主机名的IPv4 的地址格式
+
+    except:
+        print(&apos;cannot resolve %s: unknown host&apos;%tgtHost)
+        return
+    try:    
+        tgtName=gethostbyaddr(tgtIP)#gethostbyaddr()根据ip地址反向查找主机名称,返回的结果保存成一个列表，第一个元素是主机名称
+        print(&apos;Scan results for:&apos;+ tgtName[0])
+    except:
+        print(&apos;Scan results for:&apos;+ tgtIP)#如果没有查到主机名称，则输出ip
+    setdefaulttimeout(1)#访问超时设置
+    for tgtPost in tgtPosts:#将要扫描的端口号的列表逐行取出
+        thread=threading.Thread(target=connscan,args=(tgtHost,int(tgtPost)))
+        thread.start()
+
+
+def connscan(tgtHost,tgtPost):
+    try:
+        connskt=socket(AF_INET,SOCK_STREAM)#创建socket对象，AF_INET表示ipv4协议，SOCK_STREAM表示使用TCP
+        connskt.connect((tgtHost,tgtPost))
+        connskt.send(&apos;test&apos;)#dend()发送TCP数据,将string中的数据发送到连接的套接字
+        result=connskt.recv(100)#recv接受TCP套接字的数据。数据以字符串形式返回，参数指定要接收的最大数据量
+        screenLock.acquire()#因为是多线程允许，如果同时打印文字会使得文字混乱，acquire执行一个加锁的操作
+        print(&apos;%d/tcp open&apos;%tgtPost)
+        print(str(result))
+
+    except:
+        print(&apos;%d/tcp close&apos;%tgtPost)
+    finally:#在异常处理代码中，位于finally关键字后的代码是终止阻塞其他线程之前需要执行的代码
+        screenLock.release()#释放
+        connskt.close()
+
+def main():
+    parser=optparse.OptionParser(&apos;请输入正确的参数：-H &lt;target host&gt; -p &lt;target post&gt;&apos;)
+    parser.add_option(&apos;-H&apos;,dest=&apos;tgtHost&apos;,type=&apos;string&apos;,help=&apos;指定目标的主机地址&apos;)
+    parser.add_option(&apos;-p&apos;,dest=&apos;tgtPost&apos;,type=&apos;string&apos;,help=&apos;指定目标的端口号&apos;)
+    (options,args)=parser.parse_args()
+    tgtHost=options.tgtHost
+    if &apos;,&apos;in options.tgtPost:
+        tgtPosts=str(options.tgtPost).split(&apos;,&apos;)
+        if (tgtHost == None) or (tgtPosts[0] == None):
+            print(parser.usage)
+            exit(0)
+        for tgtPost in tgtPosts:
+            portscan(tgtHost,str(tgtPosts))
+    elif &apos;-&apos; in options.tgtPost:
+        first_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[0]
+        last_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[1]
+        if (tgtHost == None) or (first_tgtPosts == None) or (last_tgtPosts == None):
+            print(parser.usage)
+            exit(0)    
+        for tgtPost in range(int(first_tgtPosts),int(last_tgtPosts)+1): 
+            portscan(tgtHost,str(tgtPosts))
+    tgtPosts=str(options.tgtPost).split(&apos; &apos;)#只扫描一个端口也要把该端口号当作一个列表传给portscan函数
+    if (tgtHost == None) or (tgtPosts == None):
+        print(parser.usage)
+        exit(0)
+    portscan(tgtHost,tgtPosts)
+
+if __name__==&apos;__main__&apos;:
+    main() #``
+</code></pre>
       
     </div>
 
@@ -359,6 +448,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
       
 
       
@@ -451,7 +546,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

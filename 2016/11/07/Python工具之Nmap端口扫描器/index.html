@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="小六">
+<meta name="description" content="只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python工具之Nmap端口扫描器">
 <meta property="og:url" content="http://yoursite.com/2016/11/07/Python工具之Nmap端口扫描器/index.html">
 <meta property="og:site_name" content="●(六儿)●">
-<meta property="og:description" content="小六">
-<meta property="og:updated_time" content="2016-11-07T07:55:16.179Z">
+<meta property="og:description" content="只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.">
+<meta property="og:updated_time" content="2016-11-12T03:10:57.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python工具之Nmap端口扫描器">
-<meta name="twitter:description" content="小六">
+<meta name="twitter:description" content="只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.">
 
 
 
@@ -297,6 +297,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -335,7 +354,49 @@
       
 
       
-        
+        <p>只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.<br><a id="more"></a></p>
+<pre><code>#coding:utf-8
+import optparse,threading,multiprocessing,nmap
+from socket import * #把socket下的所有名字引入当前名称空间
+
+def nmapscan(tgtHost,tgtPost):
+    nmscan=nmap.PortScanner()
+    nmscan.scan(tgtHost,tgtPost)
+    state=nmscan[tgtHost][&apos;tcp&apos;][int(tgtPost)][&apos;state&apos;]
+    print(&apos;[*] &apos;+tgtHost+&apos; tcp/&apos;+tgtPost+&apos; &apos;+state)
+
+
+def main():
+    parser=optparse.OptionParser(&apos;请输入正确的参数：-H &lt;target host&gt; -p &lt;target post&gt;&apos;)
+    parser.add_option(&apos;-H&apos;,dest=&apos;tgtHost&apos;,type=&apos;string&apos;,help=&apos;指定目标的主机地址&apos;)
+    parser.add_option(&apos;-p&apos;,dest=&apos;tgtPost&apos;,type=&apos;string&apos;,help=&apos;指定目标的端口号&apos;)
+    (options,args)=parser.parse_args()
+    tgtHost=options.tgtHost
+    if &apos;,&apos;in options.tgtPost:#如果用户输入的端口号列表中有逗号，说明是不连续的端口号
+        tgtPosts=str(options.tgtPost).split(&apos;,&apos;)#用逗号分割
+        if (tgtHost == None) or (tgtPosts[0] == None):#目标主机地址为空，或者端口号列表的第一个元素为空
+            print(parser.usage)#输出提示信息
+            exit(0)#结束程序
+        for tgtPost in tgtPosts:#端口号不为空，则逐个取出
+            nmapscan(tgtHost,tgtPost)#调用nmapscan函数
+    elif &apos;-&apos; in options.tgtPost:#如果用户输入的端口号列表中有- 说明是连续的端口号
+        first_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[0]#以-分割的的索引为0的元素是连续端口号的第一个端口（1-80）
+        last_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[1]#以-分割的的索引为1的元素是连续端口号的最后一个端口
+        if (tgtHost == None) or (first_tgtPosts == None) or (last_tgtPosts == None):
+            print(parser.usage)
+            exit(0)    
+        for tgtPost in range(int(first_tgtPosts),int(last_tgtPosts)+1):#将连续的端口号逐个取出
+            nmapscan(tgtHost,str(tgtPost))    
+    tgtPosts=str(options.tgtPost)#如果用户输入的端口号列表中没有，和-  说明用户只想扫描一个端口
+    if (tgtHost == None) or (tgtPosts == None):
+        print(parser.usage)
+        exit(0)
+    nmapscan(tgtHost,tgtPosts)        
+
+
+if __name__==&apos;__main__&apos;:
+    main()
+</code></pre>
       
     </div>
 
@@ -360,6 +421,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -372,6 +439,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/12/Python工具之爬虫/" rel="prev" title="Python工具之爬虫">
+                Python工具之爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -447,7 +518,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

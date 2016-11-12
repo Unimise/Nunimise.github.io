@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="工具," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="zip文件口令破解,可以指定文件名和密码字典">
+<meta name="description" content="小六">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python工具之zip文件口令破解机">
-<meta property="og:url" content="http://yoursite.com/2016/11/07/Python工具之zip文件口令破解机/index.html">
+<meta property="og:title" content="Python工具之二级域名爆破">
+<meta property="og:url" content="http://yoursite.com/2016/11/12/Python工具之二级域名爆破/index.html">
 <meta property="og:site_name" content="●(六儿)●">
-<meta property="og:description" content="zip文件口令破解,可以指定文件名和密码字典">
-<meta property="og:updated_time" content="2016-11-07T08:50:05.173Z">
+<meta property="og:description" content="小六">
+<meta property="og:updated_time" content="2016-11-12T03:15:14.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python工具之zip文件口令破解机">
-<meta name="twitter:description" content="zip文件口令破解,可以指定文件名和密码字典">
+<meta name="twitter:title" content="Python工具之二级域名爆破">
+<meta name="twitter:description" content="小六">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/07/Python工具之zip文件口令破解机/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/12/Python工具之二级域名爆破/"/>
 
-  <title> Python工具之zip文件口令破解机 | ●(六儿)● </title>
+  <title> Python工具之二级域名爆破 | ●(六儿)● </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +279,7 @@
             
             
               
-                Python工具之zip文件口令破解机
+                Python工具之二级域名爆破
               
             
           </h1>
@@ -291,38 +291,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T15:54:28+08:00" content="2016年11月07日">
-              2016年11月07日
+            <time itemprop="dateCreated" datetime="2016-11-12T11:15:14+08:00" content="2016年11月12日">
+              2016年11月12日
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/07/Python工具之zip文件口令破解机/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/07/Python工具之zip文件口令破解机/" itemprop="commentsCount"></span>
+                <a href="/2016/11/12/Python工具之二级域名爆破/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/Python工具之二级域名爆破/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -332,7 +313,7 @@
 
           
           
-             <span id="/2016/11/07/Python工具之zip文件口令破解机/" class="leancloud_visitors" data-flag-title="Python工具之zip文件口令破解机">
+             <span id="/2016/11/12/Python工具之二级域名爆破/" class="leancloud_visitors" data-flag-title="Python工具之二级域名爆破">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -354,42 +335,7 @@
       
 
       
-        <p>zip文件口令破解,可以指定文件名和密码字典<br><a id="more"></a></p>
-<pre><code>#coding:utf-8
-import zipfile,threading,time,optparse
-
-def breakzip(zfile,passwd):
-    try:
-        zfile.extractall(pwd=passwd)#extractall方法是用来解压zip文件的，如果是有密码的文件可以用pwd=指定密码       
-        print(&apos;成功匹配到密码：{}&apos;.format(passwd))
-    except Exception,e:#Exception是异常处理，将异常信息存在变量e中
-        return
-
-def main():
-    parser=optparse.OptionParser(&apos;请输入正确的参数形式 -f &lt;zipfile&gt; -d &lt;dictionary&gt;&apos;)#创建一个optionparser的对象，参数在打印命令被调用时显示出来
-    parser.add_option(&apos;-f&apos;,dest=&apos;zname&apos;,type=&apos;string&apos;,help=&apos;指定zip文件名&apos;)#add_option()用来添加选项，dest存储的变量，type类型，help帮助信息
-    parser.add_option(&apos;-d&apos;,dest=&apos;dname&apos;,type=&apos;string&apos;,help=&apos;指定字典文件&apos;)
-    (options,args)=parser.parse_args()#定义好了所有的命令行参数，调用 parse_args() 来解析程序的命令行
-    #options，它是一个对象（optpars.Values），保存有命令行参数值。只要知道命令行参数名，如 file，就可以访问其对应的值： options.file 
-    #args，它是一个由 positional arguments 组成的列表。
-    if (options.zname == None) or (options.dname == None):#如果没有指定参数
-        print(parser.usage) #输出提示信息
-        exit(0)
-    else:
-        zname=options.zname
-        dname=options.dname
-    zfile=zipfile.ZipFile(zname)
-    passfile=open(dname)
-    print(&apos;正在匹配密码，请等待...&apos;)
-    for line in passfile.readlines():
-        passwd=line.split(&apos;\n&apos;)[0]
-        #breakzip(zfile, passwd)
-        thread=threading.Thread(target=breakzip,args=(zfile,passwd))
-        thread.start()
-
-if __name__ == &apos;__main__&apos;:
-    main()
-</code></pre>
+        
       
     </div>
 
@@ -414,28 +360,18 @@ if __name__ == &apos;__main__&apos;:
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/工具/" rel="tag">#工具</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/31/文件上传漏洞之FCK编辑器/" rel="next" title="文件上传漏洞之FCK编辑器">
-                <i class="fa fa-chevron-left"></i> 文件上传漏洞之FCK编辑器
+              <a href="/2016/11/12/Python工具之爬虫/" rel="next" title="Python工具之爬虫">
+                <i class="fa fa-chevron-left"></i> Python工具之爬虫
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/07/Python工具之TCP全连接端口扫描器/" rel="prev" title="Python工具之TCP全连接端口扫描器">
-                Python工具之TCP全连接端口扫描器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +401,8 @@ if __name__ == &apos;__main__&apos;:
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/07/Python工具之zip文件口令破解机/"
-           data-title="Python工具之zip文件口令破解机" data-url="http://yoursite.com/2016/11/07/Python工具之zip文件口令破解机/">
+      <div class="ds-thread" data-thread-key="2016/11/12/Python工具之二级域名爆破/"
+           data-title="Python工具之二级域名爆破" data-url="http://yoursite.com/2016/11/12/Python工具之二级域名爆破/">
       </div>
     
   </div>

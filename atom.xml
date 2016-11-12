@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-07T07:55:16.179Z</updated>
+  <updated>2016-11-12T03:15:14.072Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Python工具之Nmap端口扫描器</title>
-    <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8BNmap%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
-    <id>http://yoursite.com/2016/11/07/Python工具之Nmap端口扫描器/</id>
-    <published>2016-11-07T07:55:16.000Z</published>
-    <updated>2016-11-07T07:55:16.179Z</updated>
+    <title>Python工具之二级域名爆破</title>
+    <link href="http://yoursite.com/2016/11/12/Python%E5%B7%A5%E5%85%B7%E4%B9%8B%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4/"/>
+    <id>http://yoursite.com/2016/11/12/Python工具之二级域名爆破/</id>
+    <published>2016-11-12T03:15:14.000Z</published>
+    <updated>2016-11-12T03:15:14.072Z</updated>
     
     <summary type="html">
     
@@ -30,16 +30,314 @@
   </entry>
   
   <entry>
+    <title>Python工具之爬虫</title>
+    <link href="http://yoursite.com/2016/11/12/Python%E5%B7%A5%E5%85%B7%E4%B9%8B%E7%88%AC%E8%99%AB/"/>
+    <id>http://yoursite.com/2016/11/12/Python工具之爬虫/</id>
+    <published>2016-11-12T03:14:59.000Z</published>
+    <updated>2016-11-12T10:30:13.665Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里小编展示三个爬虫的例子<br>1.爬取补天厂商列表<br>2.爬取网易新闻排行榜<br>3.爬取图片<br><a id="more"></a></p>
+<h3 id="爬取补天厂商列表"><a href="#爬取补天厂商列表" class="headerlink" title="爬取补天厂商列表"></a>爬取补天厂商列表</h3><pre><code>from lxml import etree
+import re,os,threading
+import urllib.request
+
+def message_info(page):
+    dom=etree.HTML(page)#用html解析,保存成dom树
+    title=dom.xpath(&apos;/html//td/a&apos;)#取出厂商的名称
+    url=dom.xpath(&apos;/html//td[2]&apos;)#取出厂商url
+    title_list=[]#初始化厂商名称的一个列表
+    url_list=[]#初始化厂商url的一个列表
+    new_list=[]#初始化厂商列表的一个列表
+    for x in title:#将厂商名称逐条取出
+        title_list.append(x.text)#插入到title_list这个列表中
+    for y in url:#将厂商url逐条取出
+        url_list.append(y.text) #插入到url_list这个列表中
+    for k in range(len(title_list)):
+        new_tuple=(title_list[k],url_list[k])#将title_list和url_list两个列表中对应位置的数据取出来(title,url)
+        new_list.append(new_tuple)#插入到new_list这个新的列表中
+    return(new_list,url_list)#将厂商列表和url列表返回
+
+def save_path(path,fileName,message):
+    if not os.path.exists(path): #判断path(补天)这个文件夹是否存在
+        os.mkdir(path)#不存在就创建
+    newFileName=fileName+&apos;.txt&apos;#拼接文件名(厂商列表.txt)存储在newFileName中
+    newFile=os.path.join(path,newFileName)#拼接路径(补天/厂商列表.txt)存储在newFile中
+    with open(newFile,&apos;a&apos;) as f:#打开newFile这个文件(补天/厂商列表.txt)存储在变量f中,用a是追加(每次写入不会清空)
+        for s in message:#将厂商列表的内容逐行取出,message(也就是message_list)是一个列表,列表的每一个元素是个元组(title,url)
+            f.write(&apos;%s %s\n&apos;%(s[0],s[1]))#s[0](title)和s[1](url)的内容写入到文件中
+
+def save_url(path,fileName,message):
+    if not os.path.exists(path):#判断path(补天)这个文件夹是否存在
+        os.mkdir(path)#不存在就创建
+    newFileName=fileName+&apos;.txt&apos;#拼接文件名(url列表.txt)存储在newFileName中
+    newFile=os.path.join(path,newFileName)#拼接路径(补天/url列表.txt)存储在newFile中
+    with open(newFile,&apos;a&apos;) as f:
+        for s in message:#将厂商列表的内容逐行取出,message(也就是murl_list)是一个列表
+            f.write(&apos;%s\n&apos;%s)#将列表的每一个元素写入到文件中
+
+def Spider(url):
+    message=urllib.request.urlopen(url)#解析url,返回的结果是内存地址
+    html=message.read()#用read()读出内容,存到html这个变量中
+    List=message_info(html)#调用message_info函数,函数返回的结果(new_list,url_list)这个元组存到List变量中
+    message_list=List[0]#List[0]保存的是new_list(厂商列表)的内容
+    url_list=List[1]#List[1]保存的是url_list(url列表)的内容
+    message_path=u&apos;补天&apos;#要保存的文件夹名称
+    message_fileName=u&apos;厂商列表&apos;#要保存的文件名称
+    url_fileName=u&apos;URL列表&apos;#要保存的文件名称
+    save_path(message_path,message_fileName,message_list)#调用save_path函数,保存厂商列表
+    save_url(message_path,url_fileName,url_list)##调用save_url函数,保存url列表
+
+if __name__ == &apos;__main__&apos;:
+    for p in range(1,25):
+        start_url=&apos;https://butian.360.cn/company/lists/page/&apos;+ str(p)#循环补天厂商列表的页数
+        Spider(start_url)
+</code></pre><p>###爬取网易新闻排行榜</p>
+<pre><code>from lxml import etree
+import re,urllib,os
+import requests
+
+def save_path(path,fileName,message):
+
+    if not os.path.exists(path):#判断path文件夹是否存在,如果不存在则创建
+        os.mkdir(path)
+    newFileName=fileName+&apos;.txt&apos;#拼接存储文件的路径
+    newFile=os.path.join(path,newFileName)        #拼接存储文件的路径(获取的是存储数据文件的绝对路径)
+    with open(newFile,&apos;w+&apos;,encoding=&apos;utf-8&apos;) as f:#将列表message写入本地
+        for s in message:
+            f.write(&apos;%s %s&apos;%(s[0],s[1]))
+
+def message_info(page):#这个函数的作用是解析新闻排行榜的子标题
+    message_info=re.findall(&apos;&lt;div class=&quot;titleBar&quot; id=&quot;.*?&quot;&gt;&lt;h2&gt;(.*?)&lt;/h2&gt;&lt;div class=&quot;more&quot;&gt;&lt;a href=&quot;(.*?)&quot;&gt;.*?&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&apos;,page,re.S)#re模块是Python中的正则表达式模块#re.findall表示通过正则获取数据,获取匹配到的所有字符
+    return message_info
+
+def page_info(page):
+
+    dom=etree.HTML(page)#etree.HTML解析HTML的函数
+    title=dom.xpath(&apos;//tr/td/a/text()&apos;)#dom.xpath()在HTML中查找标签的函数
+    url=dom.xpath(&apos;//tr/td/a/@href&apos;)#找tr标签中的td,td中的a标签,a标签中的href内容
+    new_list=[]
+    for x in range(len(title)):
+        new_tuple=(title[x],url[x])
+        new_list.append(new_tuple)
+    return(new_list)
+
+def Spider(url):
+    message=requests.get(url).content.decode(&apos;gbk&apos;)#requests.get 做url请求,content 获取请求内容,decode 做gbk的编码
+    message_List=message_info(message)
+    message_path=u&apos;网易新闻排行榜&apos;
+    message_fileName=u&apos;网易新闻排行榜&apos;
+    save_path(message_path,message_fileName,message_List)
+    for item,url in message_List:
+        new_message=requests.get(url).content.decode(&apos;gbk&apos;)
+        new_message_list=page_info(new_message)
+        save_path(message_path,item,new_message_list)
+
+if __name__ == &apos;__main__&apos;:
+    start_URL=&apos;http://news.163.com/rank/&apos;
+    Spider(start_URL)
+</code></pre><p>###爬取图片</p>
+<pre><code>import urllib.request
+from lxml import etree
+import os
+def callbackfunc(blocknum, blocksize, totalsize):  
+    &apos;&apos;&apos;
+    @blocknum: 已经下载的数据块 
+    @blocksize: 数据块的大小 
+    @totalsize: 远程文件的大小 
+    &apos;&apos;&apos;  
+    percent = 100.0 * blocknum * blocksize / totalsize  
+    if percent &gt; 100:  
+        percent = 100  
+    print (&quot;%.2f%%&quot;% percent)  
+
+
+def Spider(url):
+    image=urllib.request.urlopen(url)#获取目标网站的url
+    html=image.read()#读取url
+    image_list=image_info(html)#调用image_info函数
+    for x in image_list:#将获取到的图片的url逐个取出
+        local=x.split(&apos;/&apos;)#将取出的url用/分割
+        if not os.path.exists(&apos;image&apos;):#当前目录下如果没有存在image这个文件夹
+            os.mkdir(&apos;image&apos;)#创建该目录
+        name=&apos;image/&apos;+local[-1]#拼接存储路径,保存的图片的名字为url用/分割后的最后一个元素
+        urllib.request.urlretrieve(x,name,callbackfunc)#用urllib.request.urlretrieve()方法,直接将远程数据下载到本地,第一个参数为图片的url,第二个参数为存储地址,参数 callbackfunc 是一个回调函数，当连接上服务器、以及相应的数据块传输完毕时会触发该回调，我们可以利用这个回调函数来显示当前的下载进度
+
+def image_info(html):
+    dom=etree.HTML(html)#将读取到的内容解析成dom树
+    url=dom.xpath(&apos;//img/@src&apos;)#选取该页面所有的图片的url
+    return url
+
+if __name__ == &apos;__main__&apos;:
+    url = &apos;http://www.colg.cn/index/detail/7624&apos;  
+    Spider(url)
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里小编展示三个爬虫的例子&lt;br&gt;1.爬取补天厂商列表&lt;br&gt;2.爬取网易新闻排行榜&lt;br&gt;3.爬取图片&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python工具之Nmap端口扫描器</title>
+    <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8BNmap%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/11/07/Python工具之Nmap端口扫描器/</id>
+    <published>2016-11-07T07:55:16.000Z</published>
+    <updated>2016-11-12T03:10:57.077Z</updated>
+    
+    <content type="html"><![CDATA[<p>只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.<br><a id="more"></a></p>
+<pre><code>#coding:utf-8
+import optparse,threading,multiprocessing,nmap
+from socket import * #把socket下的所有名字引入当前名称空间
+
+def nmapscan(tgtHost,tgtPost):
+    nmscan=nmap.PortScanner()
+    nmscan.scan(tgtHost,tgtPost)
+    state=nmscan[tgtHost][&apos;tcp&apos;][int(tgtPost)][&apos;state&apos;]
+    print(&apos;[*] &apos;+tgtHost+&apos; tcp/&apos;+tgtPost+&apos; &apos;+state)
+
+
+def main():
+    parser=optparse.OptionParser(&apos;请输入正确的参数：-H &lt;target host&gt; -p &lt;target post&gt;&apos;)
+    parser.add_option(&apos;-H&apos;,dest=&apos;tgtHost&apos;,type=&apos;string&apos;,help=&apos;指定目标的主机地址&apos;)
+    parser.add_option(&apos;-p&apos;,dest=&apos;tgtPost&apos;,type=&apos;string&apos;,help=&apos;指定目标的端口号&apos;)
+    (options,args)=parser.parse_args()
+    tgtHost=options.tgtHost
+    if &apos;,&apos;in options.tgtPost:#如果用户输入的端口号列表中有逗号，说明是不连续的端口号
+        tgtPosts=str(options.tgtPost).split(&apos;,&apos;)#用逗号分割
+        if (tgtHost == None) or (tgtPosts[0] == None):#目标主机地址为空，或者端口号列表的第一个元素为空
+            print(parser.usage)#输出提示信息
+            exit(0)#结束程序
+        for tgtPost in tgtPosts:#端口号不为空，则逐个取出
+            nmapscan(tgtHost,tgtPost)#调用nmapscan函数
+    elif &apos;-&apos; in options.tgtPost:#如果用户输入的端口号列表中有- 说明是连续的端口号
+        first_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[0]#以-分割的的索引为0的元素是连续端口号的第一个端口（1-80）
+        last_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[1]#以-分割的的索引为1的元素是连续端口号的最后一个端口
+        if (tgtHost == None) or (first_tgtPosts == None) or (last_tgtPosts == None):
+            print(parser.usage)
+            exit(0)    
+        for tgtPost in range(int(first_tgtPosts),int(last_tgtPosts)+1):#将连续的端口号逐个取出
+            nmapscan(tgtHost,str(tgtPost))    
+    tgtPosts=str(options.tgtPost)#如果用户输入的端口号列表中没有，和-  说明用户只想扫描一个端口
+    if (tgtHost == None) or (tgtPosts == None):
+        print(parser.usage)
+        exit(0)
+    nmapscan(tgtHost,tgtPosts)        
+
+
+if __name__==&apos;__main__&apos;:
+    main()
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;只能进行TCP连接扫描的脚本有些不实用,因为我们可能还要进行其他类型的扫描,如ACK,FIN等.所以升级了我们的端口扫描器,使用nmap进行端口扫描.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python工具之TCP全连接端口扫描器</title>
     <link href="http://yoursite.com/2016/11/07/Python%E5%B7%A5%E5%85%B7%E4%B9%8BTCP%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"/>
     <id>http://yoursite.com/2016/11/07/Python工具之TCP全连接端口扫描器/</id>
     <published>2016-11-07T07:54:52.000Z</published>
-    <updated>2016-11-07T07:54:52.191Z</updated>
+    <updated>2016-11-12T02:56:46.194Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用TCP全连接扫描来识别主机的TCP端口扫描器</p>
+<a id="more"></a>
+<pre><code>#coding:utf-8
+import optparse,threading,multiprocessing
+from socket import * #把socket下的所有名字引入当前名称空间
+
+screenLock=multiprocessing.Semaphore(value=1)
+def portscan(tgtHost,tgtPosts):
+    try:
+        tgtIP=gethostbyname(tgtHost)#gethostbyname()返回的是主机名的IPv4 的地址格式
+
+    except:
+        print(&apos;cannot resolve %s: unknown host&apos;%tgtHost)
+        return
+    try:    
+        tgtName=gethostbyaddr(tgtIP)#gethostbyaddr()根据ip地址反向查找主机名称,返回的结果保存成一个列表，第一个元素是主机名称
+        print(&apos;Scan results for:&apos;+ tgtName[0])
+    except:
+        print(&apos;Scan results for:&apos;+ tgtIP)#如果没有查到主机名称，则输出ip
+    setdefaulttimeout(1)#访问超时设置
+    for tgtPost in tgtPosts:#将要扫描的端口号的列表逐行取出
+        thread=threading.Thread(target=connscan,args=(tgtHost,int(tgtPost)))
+        thread.start()
+
+
+def connscan(tgtHost,tgtPost):
+    try:
+        connskt=socket(AF_INET,SOCK_STREAM)#创建socket对象，AF_INET表示ipv4协议，SOCK_STREAM表示使用TCP
+        connskt.connect((tgtHost,tgtPost))
+        connskt.send(&apos;test&apos;)#dend()发送TCP数据,将string中的数据发送到连接的套接字
+        result=connskt.recv(100)#recv接受TCP套接字的数据。数据以字符串形式返回，参数指定要接收的最大数据量
+        screenLock.acquire()#因为是多线程允许，如果同时打印文字会使得文字混乱，acquire执行一个加锁的操作
+        print(&apos;%d/tcp open&apos;%tgtPost)
+        print(str(result))
+
+    except:
+        print(&apos;%d/tcp close&apos;%tgtPost)
+    finally:#在异常处理代码中，位于finally关键字后的代码是终止阻塞其他线程之前需要执行的代码
+        screenLock.release()#释放
+        connskt.close()
+
+def main():
+    parser=optparse.OptionParser(&apos;请输入正确的参数：-H &lt;target host&gt; -p &lt;target post&gt;&apos;)
+    parser.add_option(&apos;-H&apos;,dest=&apos;tgtHost&apos;,type=&apos;string&apos;,help=&apos;指定目标的主机地址&apos;)
+    parser.add_option(&apos;-p&apos;,dest=&apos;tgtPost&apos;,type=&apos;string&apos;,help=&apos;指定目标的端口号&apos;)
+    (options,args)=parser.parse_args()
+    tgtHost=options.tgtHost
+    if &apos;,&apos;in options.tgtPost:
+        tgtPosts=str(options.tgtPost).split(&apos;,&apos;)
+        if (tgtHost == None) or (tgtPosts[0] == None):
+            print(parser.usage)
+            exit(0)
+        for tgtPost in tgtPosts:
+            portscan(tgtHost,str(tgtPosts))
+    elif &apos;-&apos; in options.tgtPost:
+        first_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[0]
+        last_tgtPosts=str(options.tgtPost).split(&apos;-&apos;)[1]
+        if (tgtHost == None) or (first_tgtPosts == None) or (last_tgtPosts == None):
+            print(parser.usage)
+            exit(0)    
+        for tgtPost in range(int(first_tgtPosts),int(last_tgtPosts)+1): 
+            portscan(tgtHost,str(tgtPosts))
+    tgtPosts=str(options.tgtPost).split(&apos; &apos;)#只扫描一个端口也要把该端口号当作一个列表传给portscan函数
+    if (tgtHost == None) or (tgtPosts == None):
+        print(parser.usage)
+        exit(0)
+    portscan(tgtHost,tgtPosts)
+
+if __name__==&apos;__main__&apos;:
+    main() #``
+</code></pre>]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;使用TCP全连接扫描来识别主机的TCP端口扫描器&lt;/p&gt;
+    
     </summary>
     
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
