@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/12/Python工具之爬虫/index.html">
 <meta property="og:site_name" content="●(六儿)●">
 <meta property="og:description" content="这里小编展示三个爬虫的例子1.爬取补天厂商列表2.爬取网易新闻排行榜3.爬取图片">
-<meta property="og:updated_time" content="2016-11-12T10:30:13.665Z">
+<meta property="og:updated_time" content="2016-11-12T10:38:40.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python工具之爬虫">
 <meta name="twitter:description" content="这里小编展示三个爬虫的例子1.爬取补天厂商列表2.爬取网易新闻排行榜3.爬取图片">
@@ -409,8 +409,7 @@ if __name__ == &apos;__main__&apos;:
     for p in range(1,25):
         start_url=&apos;https://butian.360.cn/company/lists/page/&apos;+ str(p)#循环补天厂商列表的页数
         Spider(start_url)
-</code></pre><p>###爬取网易新闻排行榜</p>
-<pre><code>from lxml import etree
+</code></pre><h3 id="爬取网易新闻排行榜"><a href="#爬取网易新闻排行榜" class="headerlink" title="爬取网易新闻排行榜"></a>爬取网易新闻排行榜</h3><pre><code>from lxml import etree
 import re,urllib,os
 import requests
 
@@ -453,8 +452,7 @@ def Spider(url):
 if __name__ == &apos;__main__&apos;:
     start_URL=&apos;http://news.163.com/rank/&apos;
     Spider(start_URL)
-</code></pre><p>###爬取图片</p>
-<pre><code>import urllib.request
+</code></pre><h3 id="爬取图片"><a href="#爬取图片" class="headerlink" title="爬取图片"></a>爬取图片</h3><pre><code>import urllib.request
 from lxml import etree
 import os
 def callbackfunc(blocknum, blocksize, totalsize):  
@@ -710,7 +708,7 @@ if __name__ == &apos;__main__&apos;:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取补天厂商列表"><span class="nav-number">1.</span> <span class="nav-text">爬取补天厂商列表</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取补天厂商列表"><span class="nav-number">1.</span> <span class="nav-text">爬取补天厂商列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取网易新闻排行榜"><span class="nav-number">2.</span> <span class="nav-text">爬取网易新闻排行榜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬取图片"><span class="nav-number">3.</span> <span class="nav-text">爬取图片</span></a></li></ol></div>
             
           </div>
         </section>
